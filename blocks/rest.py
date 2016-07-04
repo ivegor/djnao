@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from base.models import Base
+from blocks.models import Slider
 
 
-class BaseSerializer(serializers.ModelSerializer):
+class SliderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Base
+        model = Slider
         fields = '__all__'
