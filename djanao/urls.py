@@ -31,6 +31,7 @@ def base_t(request):
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('base.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ] + static('/static/', document_root=settings.STATIC_ROOT) \
  + static('/media/', document_root=settings.MEDIA_ROOT) \
 + [url('.*', base_t)]

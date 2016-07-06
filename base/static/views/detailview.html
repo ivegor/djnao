@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+<section class="row">
+    <ul class="nav btn-group nav-pills nav-stacked col-md-3 " >
+        <li ng-repeat="m in menu" ng-class="{active: isActiveUrl(m.slug)}"><a href="{{ currentUrl }}/{{ m.slug }}">{{ m.name }}</a></li>
+    </ul>
+    <article class="col-md-9">
+        <h1 class="text-center">{{ detail.heading }}</h1>
+        <img ng-if="detail.image" class="img-rounded center-block" src="{{ detail.image }}" width="100%">
+        <div ng-bind-html="detail.text"></div>
+
+        <div id="owl-example" class="owl-carousel">
+         <div> Your Content </div>
+         <div> Your Content </div>
+         <div> Your Content </div>
+         <div> Your Content </div>
+         <div> Your Content </div>
+         <div> Your Content </div>
+         <div> Your Content </div>
+
+        </div>
+
+    </article>
+</section>
+

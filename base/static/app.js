@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'ngSanitize']);
 
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider
@@ -8,16 +8,13 @@ app.config(function($routeProvider, $locationProvider) {
     templateUrl : '/static/views/home.html',
     controller  : 'HomeController'
   })
-  .when('/information', {
-      templateUrl: '/static/views/listview.html',
-      controller: 'ListController',
-      params:{
-          slug:'information'
-      }
-  })
-  .when('/activity', {
+  .when('/:category', {
       templateUrl: '/static/views/listview.html',
       controller: 'ListController'
+  })
+  .when('/:category/:page', {
+      templateUrl: '/static/views/detailview.html',
+      controller: 'DetailController'
   })
   .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode(true);
@@ -31,7 +28,7 @@ app.controller('Base', function($scope, $http, $location){
         $scope.menu = response.data;
     });
     $scope.isActiveUrl = function(route) {
-        return $location.path().split('/')[1] ==route;
+        return $location.path().split('/')[1] == route;
     }
 
 });
@@ -46,8 +43,38 @@ app.controller('HomeController', ['$scope', '$http', 'DataCache', function($scop
 		});
 	}
 }]);
-app.controller('ListController', function ($scope, $stateParams) {
-    console.log($stateParams)
+app.controller('ListController', function ($scope, $routeParams, DataCache, $http, $location) {
+    $scope.currentUrl = $location.path();
+    $scope.menu = DataCache.get('menu' + $routeParams.category);
+    if (!$scope.menu) {
+		var request = $http.get('/api/menu/' + $routeParams.category);
+		request.success(function (response) {
+			DataCache.put('menu' + $routeParams.category, response);
+			$scope.menu = response;
+		});
+	}
+});
+app.controller('DetailController', function ($scope, $routeParams, DataCache, $http, $location) {
+    $scope.currentUrl = $location.path().replace(/\/[\w-]+$/, '');
+    $scope.menu = DataCache.get('menu' + $routeParams.category);
+    if (!$scope.menu) {
+		var requestMenu = $http.get('/api/menu/' + $routeParams.category);
+		requestMenu.success(function (response) {
+			DataCache.put('menu' + $routeParams.category, response);
+			$scope.menu = response;
+		});
+	}
+    $scope.detail = DataCache.get('detail' + $routeParams.page);
+    if (!$scope.detail) {
+		var requestDetail = $http.get('/api/detail/' + $routeParams.page);
+		requestDetail.success(function (response) {
+			DataCache.put('detail' + $routeParams.page, response);
+			$scope.detail = response;
+		});
+	}
+    $scope.isActiveUrl = function(route) {
+        return $location.path().split('/')[2] == route;
+    }
 });
 app.filter('tel', function () {
     return function(tel){

@@ -3,10 +3,13 @@ from django.conf import settings
 
 from base.views import base
 from blocks.views import slider
+from detail.views import detail
 from menu.views import menu
 
 urlpatterns = [
     url(r'^base$', base),
     url(r'^slider$', slider),
-    url(r'^menu(?P<path>[\d]*)$', menu)
+    url(r'^menu$', menu),
+    url(r'^menu/(?P<path>[\w]+)$', menu),
+    url(r'^detail/(?P<slug>[\S]+)$', detail)
 ]

@@ -43,12 +43,15 @@ INSTALLED_APPS += [
     'rest_framework',
     'imagekit',
     'mptt',
+    'ckeditor',
+    'ckeditor_uploader'
 ]
 # custom
 INSTALLED_APPS += [
     'base',
     'blocks',
-    'menu'
+    'menu',
+    'detail'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -135,3 +138,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/"
