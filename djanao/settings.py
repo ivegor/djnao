@@ -41,11 +41,14 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'rest_framework',
+    'imagekit',
+    'mptt',
 ]
 # custom
 INSTALLED_APPS += [
     'base',
-    'blocks'
+    'blocks',
+    'menu'
 ]
 
 MIDDLEWARE_CLASSES = [

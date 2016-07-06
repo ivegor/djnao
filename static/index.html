@@ -27,10 +27,10 @@
         <header class="navbar navbar-header">
             <div class="navbar navbar-default" role="navigation">
                 <div class="container">
-                    <a href="/" class="navbar-brand text-uppercase">
+                    <div class="navbar-brand text-uppercase">
                         <span class="hidden-xs">{{ base.heading }}</span>
                         <span class="visible-xs">{{ base.small_heading }}</span>
-                    </a>
+                    </div>
                     <div class="navbar-header">
                       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main_menu__left, #main_menu__right">
                         <span class="sr-only">Toggle navigation</span>
@@ -43,31 +43,24 @@
             </div>
           <div class="row" style="margin-top: -20px">
               <div class="col-sm-4 col-md-4 col-lg-4">
-                  <ul class="nav nav-pills nav-stacked text-center collapse navbar-collapse" id="main_menu__left">
-                      <li  role="presentation"><a href="/">Главная</a></li>
-                      <li role="presentation"><a href="/information">Сведения</a></li>
-                      <li role="presentation"><a href="/activity">Деятельность</a></li>
+                  <ul class="nav nav-pills nav-stacked text-center collapse navbar-collapse lead" id="main_menu__left">
+                      <li ng-class="{active: isActiveUrl(m.slug)}" ng-repeat="m in menu | filter:{parent:1} | orderBy: 'order'"  role="presentation"><a href="/{{ m.slug }}">{{ m.name }}</a></li>
                   </ul>
               </div>
               <div class="col-sm-4 col-md-4 col-lg-4 hidden-xs "><img src="{{ base.logo }}" class="img-thumbnail"></div>
               <div class="col-sm-4 col-md-4 col-lg-4" >
-                  <ul class="nav nav-pills nav-stacked text-center collapse navbar-collapse" id="main_menu__right">
-                      <li  role="presentation"><a href="">Абитуриентам</a></li>
-                      <li role="presentation"><a href="">Студентам</a></li>
-                      <li role="presentation"><a href="">Выпускникам</a></li>
+                  <ul class="nav nav-pills nav-stacked text-center collapse navbar-collapse lead" id="main_menu__right">
+                      <li ng-class="{active: isActiveUrl(m.slug)}" ng-repeat="m in menu | filter:{parent:2} | orderBy: 'order'"  role="presentation"><a href="/{{ m.slug }}">{{ m.name }}</a></li>
                   </ul>
               </div>
           </div>
           <address class="text-center lead navbar navbar-default ">
               <a href="tel:{{ base.phone }}" style="display: block; margin-top: 10px">{{ base.phone | tel }}</a>
-
           </address>
       </header>
       <div class="container theme-showcase" role="main">
-          <span>Home</span>
-            <div ng-view></div>
-
-
+          <div class="clearfix"></div>
+          <div ng-view></div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

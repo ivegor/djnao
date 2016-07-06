@@ -2,17 +2,16 @@
 <!-- /Style Slider -->
 <div  id="Carousel" class="carousel slide carousel-slideSequence" data-ride="carousel">
     <ol class="carousel-indicators">
-    <li data-target="#Carousel" data-slide-to="0" class="active" ng-repeat="slide in slider"></li>
-
+    <li data-target="#Carousel" data-slide-to="{{ $index }}" ng-class="{active:$first}" ng-repeat="slide in slider"></li>
     </ol>
     <div class="carousel-inner">
-     <div ng-class="  {active:$first === $index}" ng-repeat="slide in slider">
-         <img src="{{ slide.image }}">
+     <div class="item" ng-class="{active:$first}" ng-repeat="slide in slider">
+         <img src="{{ slide.image }}" class=center-block width="100%">
          <div class="container">
-             <div class="carousel-caption">
-                <h3>{{ slide.h3 }}</h3>
-                <p>{{ slide.p }}</p>
-                <p><a class="btn btn-lg btn-opacity" href="{{ slide.link }}" role="button">Смотреть</a></p>
+             <div class="carousel-caption" style="color:{{ slider.color }}">
+                <h3 class="hidden-xs">{{ slide.h3 }}</h3>
+                <p class="hidden-xs">{{ slide.p }}</p>
+                <p ng-show="slide.link"><a class="btn btn-primary " href="{{ slide.link }}" role="button">Смотреть</a></p>
              </div>
          </div>
      </div>

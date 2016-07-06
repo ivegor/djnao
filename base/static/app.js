@@ -10,7 +10,10 @@ app.config(function($routeProvider, $locationProvider) {
   })
   .when('/information', {
       templateUrl: '/static/views/listview.html',
-      controller: 'ListController'
+      controller: 'ListController',
+      params:{
+          slug:'information'
+      }
   })
   .when('/activity', {
       templateUrl: '/static/views/listview.html',
@@ -20,10 +23,16 @@ app.config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 });
 
-app.controller('Base', function($scope, $http){
+app.controller('Base', function($scope, $http, $location){
     $http.get('/api/base').then(function(response){
         $scope.base = response.data;
-    })
+    });
+    $http.get('/api/menu').then(function(response){
+        $scope.menu = response.data;
+    });
+    $scope.isActiveUrl = function(route) {
+        return $location.path().split('/')[1] ==route;
+    }
 
 });
 
@@ -37,8 +46,8 @@ app.controller('HomeController', ['$scope', '$http', 'DataCache', function($scop
 		});
 	}
 }]);
-app.controller('ListController', function ($scope) {
-    
+app.controller('ListController', function ($scope, $stateParams) {
+    console.log($stateParams)
 });
 app.filter('tel', function () {
     return function(tel){
