@@ -74,7 +74,7 @@ app.controller('DetailController', function ($scope, $routeParams, DataCache, $h
 	}
     $scope.isActiveUrl = function(route) {
         return $location.path().split('/')[2] == route;
-    }
+    };
 });
 app.filter('tel', function () {
     return function(tel){
@@ -93,4 +93,22 @@ app.filter('tel', function () {
 });
 app.factory('DataCache', function ($cacheFactory) {
 	return $cacheFactory('dataCache', {});
+});
+app.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('ngRepeatFinished');
+                    var quqntity=$(".item__sub_menu__left").size();
+                    var widthScroll=0;
+                    for (var i=0;i<quqntity;i++){
+                        widthScroll+=$(".item__sub_menu__left:eq("+i+")").width();
+                    }
+                    $(".sub_menu__left").css('max-width', widthScroll+1);
+                });
+            }
+        }
+    }
 });

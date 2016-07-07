@@ -44,7 +44,7 @@ INSTALLED_APPS += [
     'imagekit',
     'mptt',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
 ]
 # custom
 INSTALLED_APPS += [

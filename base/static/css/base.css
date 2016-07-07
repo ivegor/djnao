@@ -1,31 +1,19 @@
 footer{
     margin-top: 40px;
 }
-#owl-demo .item{
-    background: #42bdc2;
-    padding: 30px 0px;
-    margin: 5px;
-    color: #FFF;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    text-align: center;
+h1{
+    margin-top: 0;
 }
-.owl-carousel .owl-wrapper-outer {
-overflow: hidden;
-position: relative;
-width: 100%;
-}
-.owl-carousel .owl-wrapper, .owl-carousel .owl-item {
--webkit-backface-visibility: hidden;
--moz-backface-visibility: hidden;
--ms-backface-visibility: hidden;
--webkit-transform: translate3d(0,0,0);
--moz-transform: translate3d(0,0,0);
--ms-transform: translate3d(0,0,0);
-}
-.owl-carousel .owl-wrapper {
-display: none;
-position: relative;
--webkit-transform: translate3d(0px, 0px, 0px);
+@media (max-width: 768px) {
+    .scroll_menu_container{
+        overflow-x:scroll;
+        overflow-y:hidden;
+    }
+    .sub_menu__left{
+
+        width: 9999px;
+    }
+    .item__sub_menu__left{
+        float: left !important;
+    }
 }
