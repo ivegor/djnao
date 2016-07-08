@@ -1,16 +1,36 @@
+$ = django.jQuery;
 $(function() {
-    function getData(id) {
-        $.get('/admin/ajax/' + id).done(function (data) {
-            console.log('hi', data)
-        })
-    }
     var contentType = $('#id_content_type');
-    var objects = getData(contentType.val());
-    var object_id = $('#id_object_id');
-    var select = object_id.after($('<select>'));
-    object_id.hide();
-    for (var el in objects){
-        select.append($('<option>'))
-    }
+    var object_id = $('#id_object_id').hide().after($('<select>'));
+    var select = object_id.next();
+    var init = !! object_id.val();
 
+    function getData(id) {
+        if (isFinite(id)){
+        $.get('/admin/ajax/' + id).done(function (data) {
+            select.empty();
+            $.each(data, function(i, v) {
+                select.append($("<option>", {
+                    value: v.id,
+                    text: v.name
+                    }));
+                });
+            if (init) {
+                select.val(object_id.val());
+                init = false
+            }
+            else {
+                object_id.val(select.val())
+            }
+        })
+    }}
+
+    getData(contentType.val());
+
+    contentType.change(function () {
+        getData(contentType.val());
+    });
+    select.change(function () {
+        object_id.val(select.val())
+    })
 });

@@ -2,6 +2,9 @@ from django import forms
 
 
 class ChoiceGenericForeignKey(forms.NumberInput):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     class Media:
-        css = {'generic_choice': ('generic_choice.css',)}
-        js = ('js/jquery-1.9.1.min.js', 'js/generic_choice.js')
+        js = ('js/generic_choice.js',)

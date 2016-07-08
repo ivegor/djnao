@@ -4,13 +4,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.forms import ModelForm
 
 from admin.widgets import ChoiceGenericForeignKey
-from djanao.models import BaseModel
 from menu.models import Menu
 
 
 class MenuForm(ModelForm):
-    content_type = forms.ChoiceField(choices=lambda: ((model.id, model.model) for model in ContentType.objects.all()
-                                                      if model and issubclass(model.model_class(), BaseModel)))
+    content_type = forms.ModelChoiceField(queryset=ContentType.objects.filter(app_label__in=('detail', 'staff', 'blocks')))
     object_id = forms.IntegerField(widget=ChoiceGenericForeignKey())
 
     class Meta:
