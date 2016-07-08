@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('app', ['ngRoute', 'ngSanitize']);
+var app = angular.module('app', ['ngRoute', 'ngSanitize', 'ngAnimate']);
 
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider
@@ -45,14 +45,7 @@ app.controller('HomeController', ['$scope', '$http', 'DataCache', function($scop
 }]);
 app.controller('ListController', function ($scope, $routeParams, DataCache, $http, $location) {
     $scope.currentUrl = $location.path();
-    $scope.menu = DataCache.get('menu' + $routeParams.category);
-    if (!$scope.menu) {
-		var request = $http.get('/api/menu/' + $routeParams.category);
-		request.success(function (response) {
-			DataCache.put('menu' + $routeParams.category, response);
-			$scope.menu = response;
-		});
-	}
+    $scope.menu = getCachedData('menu/' + $routeParams.category, $http, DataCache);
 });
 app.controller('DetailController', function ($scope, $routeParams, DataCache, $http, $location) {
     $scope.currentUrl = $location.path().replace(/\/[\w-]+$/, '');
@@ -112,3 +105,24 @@ app.directive('onFinishRender', function ($timeout) {
         }
     }
 });
+app.directive('leftMenu', function($scope, $location, DataCache, $http, $routeParams){
+    $scope.currentUrl = $location.path().replace(/\/[\w-]+$/, '');
+    $scope.menu = DataCache.get('menu' + $routeParams.category);
+    if (!$scope.menu) {
+		var requestMenu = $http.get('/api/menu/' + $routeParams.category);
+		requestMenu.success(function (response) {
+			DataCache.put('menu' + $routeParams.category, response);
+			$scope.menu = response;
+		});
+	}
+});
+
+function getCachedData(path, $http, DataCache){
+    function request(){
+        return $http.get('/api/' + path).success(function(response){
+            DataCache.put(path, response);
+            return response
+        })
+    }
+    return DataCache.get(path) || request()
+}
