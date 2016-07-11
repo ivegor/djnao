@@ -1,3 +1,4 @@
 <h1 class="text-center">{{ detail.heading }}</h1>
 <img ng-if="detail.image" class="img-rounded center-block" src="{{ detail.image }}" width="100%">
 <div ng-bind-html="detail.text"></div>
+<div ng-include="set()"></div>

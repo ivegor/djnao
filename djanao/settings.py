@@ -45,6 +45,7 @@ INSTALLED_APPS += [
     'mptt',
     'ckeditor',
     'ckeditor_uploader',
+    'django_mptt_admin'
 ]
 # custom
 INSTALLED_APPS += [

@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
 from django.forms import ModelForm
 
+from django_mptt_admin.admin import DjangoMpttAdmin
+
 from admin.widgets import ChoiceGenericForeignKey
 from menu.models import Menu
 
@@ -16,8 +18,7 @@ class MenuForm(ModelForm):
         fields = '__all__'
 
 
-class MenuAdmin(admin.ModelAdmin):
+class MenuAdmin(DjangoMpttAdmin):
     form = MenuForm
-
 
 admin.site.register(Menu, MenuAdmin)

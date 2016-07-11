@@ -4,5 +4,5 @@
             <li on-finish-render="ngRepeatFinished" class="item__sub_menu__left" ng-repeat="m in menu" ng-class="{active: isActiveUrl(m.slug)}"><a ui-sref="menu.detail({page:m.slug})" >{{ m.name }}</a></li>
         </ul>
     </nav>
-    <article class="col-md-9 col-lg-10 col-sm-8" ui-view></article>
+    <article class="col-md-9 col-lg-10 col-sm-8 article__animation" ui-view></article>
 </section>
