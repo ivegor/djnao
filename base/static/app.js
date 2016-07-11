@@ -1,22 +1,29 @@
 'use strict';
-var app = angular.module('app', ['ngRoute', 'ngSanitize', 'ngAnimate']);
+var app = angular.module('app', ['ui.router', 'ngSanitize', 'ngAnimate']);
 
-app.config(function($routeProvider, $locationProvider) {
-  $routeProvider
-
-  .when('/', {
-    templateUrl : '/static/views/home.html',
-    controller  : 'HomeController'
-  })
-  .when('/:category', {
-      templateUrl: '/static/views/listview.html',
-      controller: 'ListController'
-  })
-  .when('/:category/:page', {
-      templateUrl: '/static/views/detailview.html',
-      controller: 'DetailController'
-  })
-  .otherwise({redirectTo: '/'});
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+    // $urlRouterProvider.otherwise('/');
+    $stateProvider
+        .state('home', {
+            url: '/',
+            templateUrl : '/static/views/home.html',
+            controller  : 'HomeController'
+        })
+        .state('menu', {
+            url: '/:category',
+            templateUrl: '/static/views/listview.html',
+            controller: 'ListController',
+            abstract: true
+        })
+            .state('menu.list', {
+                url: '',
+                templateUrl: '/static/views/baselist.html'
+            })
+            .state('menu.detail', {
+                url: '/:page',
+                templateUrl: '/static/views/detailview.html',
+                controller: 'DetailController'
+            });
     $locationProvider.html5Mode(true);
 });
 
@@ -43,31 +50,31 @@ app.controller('HomeController', ['$scope', '$http', 'DataCache', function($scop
 		});
 	}
 }]);
-app.controller('ListController', function ($scope, $routeParams, DataCache, $http, $location) {
+app.controller('ListController', function ($scope, $stateParams, DataCache, $http, $location) {
     $scope.currentUrl = $location.path();
-    $scope.menu = getCachedData('menu/' + $routeParams.category, $http, DataCache);
-});
-app.controller('DetailController', function ($scope, $routeParams, DataCache, $http, $location) {
-    $scope.currentUrl = $location.path().replace(/\/[\w-]+$/, '');
-    $scope.menu = DataCache.get('menu' + $routeParams.category);
+    // $scope.menu = getCachedData('menu/' + $stateParams.category, $http, DataCache);
+    $scope.menu = DataCache.get('menu/' + $stateParams.category);
     if (!$scope.menu) {
-		var requestMenu = $http.get('/api/menu/' + $routeParams.category);
-		requestMenu.success(function (response) {
-			DataCache.put('menu' + $routeParams.category, response);
-			$scope.menu = response;
-		});
-	}
-    $scope.detail = DataCache.get('detail' + $routeParams.page);
-    if (!$scope.detail) {
-		var requestDetail = $http.get('/api/detail/' + $routeParams.page);
+		var requestDetail = $http.get('/api/menu/' + $stateParams.category);
 		requestDetail.success(function (response) {
-			DataCache.put('detail' + $routeParams.page, response);
-			$scope.detail = response;
+			DataCache.put('menu/' + $stateParams.category, response);
+			$scope.menu = response;
 		});
 	}
     $scope.isActiveUrl = function(route) {
         return $location.path().split('/')[2] == route;
     };
+});
+app.controller('DetailController', function ($scope, $stateParams, DataCache, $http, $location) {
+
+    $scope.detail = DataCache.get('detail' + $stateParams.page);
+    if (!$scope.detail) {
+		var requestDetail = $http.get('/api/detail/' + $stateParams.page);
+		requestDetail.success(function (response) {
+			DataCache.put('detail' + $stateParams.page, response);
+			$scope.detail = response;
+		});
+	}
 });
 app.filter('tel', function () {
     return function(tel){
@@ -104,17 +111,6 @@ app.directive('onFinishRender', function ($timeout) {
             }
         }
     }
-});
-app.directive('leftMenu', function($scope, $location, DataCache, $http, $routeParams){
-    $scope.currentUrl = $location.path().replace(/\/[\w-]+$/, '');
-    $scope.menu = DataCache.get('menu' + $routeParams.category);
-    if (!$scope.menu) {
-		var requestMenu = $http.get('/api/menu/' + $routeParams.category);
-		requestMenu.success(function (response) {
-			DataCache.put('menu' + $routeParams.category, response);
-			$scope.menu = response;
-		});
-	}
 });
 
 function getCachedData(path, $http, DataCache){
