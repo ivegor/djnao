@@ -36,8 +36,27 @@ app.controller('Base', function($scope, $http, $location){
     });
     $scope.isActiveUrl = function(route) {
         return $location.path().split('/')[1] == route;
+    };
+    $scope.$on('$stateChangeSuccess',
+  function(event, toState, toArgs, fromState, fromArgs)  {
+    console.log(event)
+})
+});
+app.animation('.animate', function ($animateCss) {
+    return {
+        enter: function(element){
+            return $animateCss(element, {
+                event: 'enter',
+                structural: true
+            });
+        },
+        leave: function(element, done){
+            return $animateCss(element, {
+                event: 'leave',
+                structural: true
+            });
+        }
     }
-
 });
 
 app.controller('HomeController', ['$scope', '$http', 'DataCache', function($scope, $http, DataCache) {
@@ -67,16 +86,16 @@ app.controller('ListController', function ($scope, $stateParams, DataCache, $htt
 });
 app.controller('DetailController', function ($scope, $stateParams, DataCache, $http, $location) {
 
-    //$scope.detail = DataCache.get('detail' + $stateParams.page);
-    //if (!$scope.detail) {
-	//	var requestDetail = $http.get('/api/detail/' + $stateParams.page);
-	//	requestDetail.success(function (response) {
-	//		DataCache.put('detail' + $stateParams.page, response);
-	//		$scope.detail = response;
-	//	});
-	//}
-    $http.get('/api/staff').success(function(response){console.log(response); $scope.detail=response})
-    $scope.set = function(){return '/static/views/staff.html'}
+    $scope.detail = DataCache.get('detail' + $stateParams.page);
+    if (!$scope.detail) {
+		var requestDetail = $http.get('/api/detail/' + $stateParams.page);
+		requestDetail.success(function (response) {
+			DataCache.put('detail' + $stateParams.page, response);
+			$scope.detail = response;
+		});
+	}
+    // $http.get('/api/staff').success(function(response){console.log(response); $scope.detail=response})
+    // $scope.set = function(){return '/static/views/staff.html'}
 });
 app.filter('tel', function () {
     return function(tel){

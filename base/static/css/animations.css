@@ -1,6 +1,6 @@
 .animate-container{
     position: relative;
-    min-height: 680px;
+    /*min-height: 680px;*/
 }
 .animate.ng-enter, .animate.ng-leave {
   transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
@@ -50,3 +50,7 @@
     bottom: -50px;
     height: 0px;
 }
+/*.enter {*/
+   /*position: absolute !important;*/
+    /*color:red;*/
+/*}*/
