@@ -27,7 +27,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 });
 
-app.controller('Base', function($scope, $http, $location){
+app.controller('Base', function($scope, $http, $location, $animateCss){
     $http.get('/api/base').then(function(response){
         $scope.base = response.data;
     });
@@ -37,20 +37,18 @@ app.controller('Base', function($scope, $http, $location){
     $scope.isActiveUrl = function(route) {
         return $location.path().split('/')[1] == route;
     };
-    $scope.$on('$stateChangeSuccess',
-  function(event, toState, toArgs, fromState, fromArgs)  {
-    console.log(event)
-})
 });
-app.animation('.animate', function ($animateCss) {
+
+app.animation('.animate_for_footer', function ($animateCss) {
     return {
-        enter: function(element){
-            return $animateCss(element, {
-                event: 'enter',
-                structural: true
-            });
-        },
-        leave: function(element, done){
+        leave: function(element){
+            var ac = $('.animate-container');
+            ac.css('min-height',$('.animate').height());
+            setTimeout(function(){ac.css('min-height', '')} , 1000);
+            $('footer').animate(
+                {bottom:"-=300", position: 'absolute', opacity: 0}, 1000)
+                        .animate(
+                {bottom:"+=300", opacity: 1}, 300);
             return $animateCss(element, {
                 event: 'leave',
                 structural: true
