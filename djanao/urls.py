@@ -30,7 +30,7 @@ def base_t(request):
 
 
 urlpatterns = [
-    url(r'admin/ajax/(?P<id>\d+)', ajax_admin_update),
+    url(r'^admin/ajax/(?P<id>\d+)', ajax_admin_update),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('base.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),

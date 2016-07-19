@@ -18,6 +18,7 @@ class Menu(MPTTModel):
 
     class Meta:
         ordering = ('order',)
+        unique_together = ('order', 'parent')
 
     def __str__(self):
         return self.name
