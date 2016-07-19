@@ -25,3 +25,4 @@ class Menu(MPTTModel):
 
     def do_slug(self):
         self.slug = slugify(unidecode(self.name))
+

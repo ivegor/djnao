@@ -16,7 +16,17 @@
       <script src="/static/js/libs/angular-sanitize.js"></script>
       <script src="/static/js/libs/angular-animate.js"></script>
       <script src="/static/js/libs/angular-ui-router.js"></script>
-      <script src="/static/app.js"></script>
+
+      <script src="/static/app/app.js"></script>
+      <script src="/static/app/common/common.controller.js"></script>
+      <script src="/static/app/common/common.factory.js"></script>
+      <script src="/static/app/common/common.footer.animation.js"></script>
+      <script src="/static/app/common/common.tel.filter.js"></script>
+      <script src="/static/app/common/list/common.list.controller.js"></script>
+      <script src="/static/app/common/list/common.list.directive.js"></script>
+      <script src="/static/app/common/detail/common.detail.controller.js"></script>
+      <script src="/static/app/home/home.controller.js"></script>
+
       <link href="/static/css/normalize.css" rel="stylesheet" type="text/css">
       <link href="/static/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
       <link href="/static/css/base.css" rel="stylesheet" type="text/css">
@@ -49,13 +59,13 @@
           <div class="row" style="margin-top: -20px">
               <div class="col-sm-4 col-md-4 col-lg-4">
                   <ul class="nav nav-pills nav-stacked text-center collapse navbar-collapse lead" id="main_menu__left">
-                      <li ng-class="{active: isActiveUrl(m.slug)}" ng-repeat="m in menu | filter:{parent:1} | orderBy: 'order'"  role="presentation"><a href="/{{ m.slug }}">{{ m.name }}</a></li>
+                      <li ng-class="{active: isActiveUrl(m.slug)}" ng-repeat="m in menu | filter:{side:'left'} | orderBy: 'order'"  role="presentation"><a href="/{{ m.slug }}">{{ m.name }}</a></li>
                   </ul>
               </div>
               <div class="col-sm-4 col-md-4 col-lg-4 hidden-xs "><img src="{{ base.logo }}" class="img-thumbnail"></div>
               <div class="col-sm-4 col-md-4 col-lg-4" >
                   <ul class="nav nav-pills nav-stacked text-center collapse navbar-collapse lead" id="main_menu__right">
-                      <li ng-class="{active: isActiveUrl(m.slug)}" ng-repeat="m in menu | filter:{parent:2} | orderBy: 'order'"  role="presentation"><a href="/{{ m.slug }}">{{ m.name }}</a></li>
+                      <li ng-class="{active: isActiveUrl(m.slug)}" ng-repeat="m in menu | filter:{side:'right'} | orderBy: 'order'"  role="presentation"><a href="/{{ m.slug }}">{{ m.name }}</a></li>
                   </ul>
               </div>
           </div>

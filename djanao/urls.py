@@ -21,7 +21,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.shortcuts import render_to_response
 
-from admin.views import ajax_admin_update
 from base.views import base as bt
 
 
@@ -30,7 +29,6 @@ def base_t(request):
 
 
 urlpatterns = [
-    url(r'^admin/ajax/(?P<id>\d+)', ajax_admin_update),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('base.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),

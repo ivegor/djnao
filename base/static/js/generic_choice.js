@@ -4,10 +4,11 @@ $(function() {
     var object_id = $('#id_object_id').hide().after($('<select>'));
     var select = object_id.next();
     var init = !! object_id.val();
+    var path = window.location.pathname.match(/\/\w+\/\w+\/\w+\//)[0];
 
     function getData(id) {
-        if (isFinite(id)){
-        $.get('/admin/ajax/' + id).done(function (data) {
+        if (id&&isFinite(id)){
+        $.get(path + 'ajax/' + id).done(function (data) {
             select.empty();
             $.each(data, function(i, v) {
                 select.append($("<option>", {

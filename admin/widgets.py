@@ -7,7 +7,7 @@ class ChoiceGenericForeignKey(forms.NumberInput):
         js = ('js/generic_choice.js',)
 
 
-class LeftRight(forms.Select):
+class LeftRight(forms.NumberInput):
 
     class Media:
         js = ('js/left_right.js',)
