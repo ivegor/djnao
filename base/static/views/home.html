@@ -1,10 +1,10 @@
 <!-- /Style Slider -->
 <div  id="Carousel" class="carousel slide carousel-slideSequence" data-ride="carousel">
     <ol class="carousel-indicators">
-    <li data-target="#Carousel" data-slide-to="{{ $index }}" ng-class="{active:$first}" ng-repeat="slide in slider"></li>
+    <li data-target="#Carousel" data-slide-to="{{ $index }}" ng-class="{active:$first}" ng-repeat="slide in home.slider"></li>
     </ol>
     <div class="carousel-inner">
-     <div class="item" ng-class="{active:$first}" ng-repeat="slide in slider">
+     <div class="item" ng-class="{active:$first}" ng-repeat="slide in home.slider">
          <img src="{{ slide.image }}" class="center-block" width="100%">
          <div class="container">
              <div class="carousel-caption" style="color:{{ slider.color }}">

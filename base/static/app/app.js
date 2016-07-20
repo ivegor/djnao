@@ -8,12 +8,14 @@
                 .state('home', {
                     url: '/',
                     templateUrl : '/static/views/home.html',
-                    controller  : 'HomeController'
+                    controller  : 'HomeController',
+                    controllerAs : 'home'
                 })
                 .state('menu', {
                     url: '/:category',
                     templateUrl: '/static/views/listview.html',
                     controller: 'ListController',
+                    controllerAs: 'list',
                     abstract: true
                 })
                     .state('menu.list', {
@@ -23,7 +25,8 @@
                     .state('menu.detail', {
                         url: '/:page',
                         templateUrl: '/static/views/detailview.html',
-                        controller: 'DetailController'
+                        controller: 'DetailController',
+                        controllerAs: 'detail'
                     });
             $locationProvider.html5Mode(true);
             $locationProvider.hashPrefix('!');

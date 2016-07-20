@@ -5,7 +5,6 @@ $(function() {
     temp = createSelect(10, '#id_order', order.attr('name'), order.val());
     order.replaceWith(temp);
     order = temp;
-    console.log(order.val());
     changeLeftRight();
     changeOrder();
     parent.change(function () {

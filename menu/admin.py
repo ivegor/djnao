@@ -13,8 +13,8 @@ from menu.models import Menu
 
 class MenuForm(ModelForm):
     order = forms.IntegerField(widget=LeftRight())
-    content_type = forms.ModelChoiceField(queryset=ContentType.objects.filter(app_label__in=('detail', 'staff', 'blocks')))
-    object_id = forms.IntegerField(widget=ChoiceGenericForeignKey())
+    content_type = forms.ModelChoiceField(queryset=ContentType.objects.filter(app_label__in=('detail', 'staff', 'blocks')), required=False)
+    object_id = forms.IntegerField(widget=ChoiceGenericForeignKey(), required=False)
 
     class Meta:
         model = Menu

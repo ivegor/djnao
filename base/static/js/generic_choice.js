@@ -10,6 +10,7 @@ $(function() {
         if (id&&isFinite(id)){
         $.get(path + 'ajax/' + id).done(function (data) {
             select.empty();
+            data.push({id:'', name:'----------'});
             $.each(data, function(i, v) {
                 select.append($("<option>", {
                     value: v.id,

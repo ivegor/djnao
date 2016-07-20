@@ -52,7 +52,8 @@ INSTALLED_APPS += [
     'base',
     'blocks',
     'menu',
-    'detail'
+    'detail',
+    'staff'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -72,7 +73,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['static'],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
