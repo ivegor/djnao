@@ -1,3 +1,5 @@
+from collections import namedtuple
+
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -5,16 +7,18 @@ from django.utils.text import slugify
 from unidecode import unidecode
 from mptt.models import MPTTModel, TreeForeignKey
 
+nt = namedtuple('Obj', 'content directive many')
+
 
 class TupleGenericForeignKey(GenericForeignKey):
     def __get__(self, instance, instance_type=None):
         g = super().__get__(instance, instance_type)
         if g:
-            return g, g.directive, False
+            return nt(g, g.directive(), False)
         elif instance.content_type:
             model = instance.content_type.model_class()
             directive = model.directive
-            return model.objects.all(), directive, True
+            return nt(model.objects.all(), directive(), True)
         else:
             return
 

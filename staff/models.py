@@ -16,7 +16,5 @@ class Staff(BaseModel):
     image = ProcessedImageField(upload_to='detail', processors=[ResizeToFill(400, 400)], blank=True)
     text = models.CharField(max_length=255)
 
-    directive = 'staff'
-
     def __str__(self):
         return self.name
