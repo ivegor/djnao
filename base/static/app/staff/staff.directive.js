@@ -6,8 +6,8 @@
     staff.$inject = [];
     function staff(){
         return {
-            require: 'ngInclude',
-            templateUrl: '/static/views/staff.html'
+            templateUrl: '/static/views/staff.html',
+            restrict: 'C'
         }
     }
 
