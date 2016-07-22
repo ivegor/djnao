@@ -7,8 +7,7 @@
     function staff(){
         return {
             templateUrl: '/static/views/staff.html',
-            restrict: 'C'
+            restrict: 'A'
         }
     }
-
 })();

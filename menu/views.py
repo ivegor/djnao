@@ -14,9 +14,9 @@ def menu(request, path=None):
         current_menu = get_object_or_404(Menu, slug=path)
         model = current_menu.content_object
         menus = current_menu.get_children()
-
-        data['content'] = SERIALIZERS[model.directive](model.content, many=model.many).data
-        data['directive'] = model.directive
+        if model:
+            data['content'] = SERIALIZERS[model.directive](model.content, many=model.many).data
+            data['directive'] = model.directive
 
     data['menu'] = rest.MenuSerializer(menus, many=True).data
     print(data)

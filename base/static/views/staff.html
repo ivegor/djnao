@@ -1,7 +1,9 @@
-<h1></h1>
 <div class="navbar-page well well-sm">
-    <select class="center-block"  ng-model="category">
-        <option ng-repeat="category in ['администрация', 'педагоги', 'обслуживающий персонал']">{{ category }}</option>
+    <select selectpicker
+            class="center-block selectpicker"
+            ng-model="category"
+            ng-init="category='администрация'"
+            ng-options="cat for cat in ['администрация', 'педагоги', 'обслуживающий персонал']">
     </select>
 </div>
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="staff in detail.content|filter:{category} | orderBy: 'order'">

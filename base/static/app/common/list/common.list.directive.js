@@ -5,7 +5,7 @@
         .directive('onFinishRender', function ($timeout) {
             return {
                 restrict: 'A',
-                link: function (scope, element, attr) {
+                link: function (scope) {
                     if (scope.$last === true) {
                         $timeout(function () {
                             scope.$emit('ngRepeatFinished');
