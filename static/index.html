@@ -1,103 +1,109 @@
 {% verbatim %}
 <!doctype html>
 <html lang="ru" ng-app="app">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <link rel="icon" href="/static/images/favicon.ico" type="image/png">
+        <link rel="icon" href="/static/images/favicon.ico" type="image/png">
 
-      <base href="/">
-      <title>Bootstrap 101 Template</title>
+        <base href="/">
+        <title>Bootstrap 101 Template</title>
 
-      <script src="/static/js/libs/angular.js"></script>
-      <script src="/static/js/libs/angular-route.js"></script>
-      <script src="/static/js/libs/angular-sanitize.js"></script>
-      <script src="/static/js/libs/angular-animate.js"></script>
-      <script src="/static/js/libs/angular-ui-router.js"></script>
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+        <script src="/static/js/libs/angular.js"></script>
+        <script src="/static/js/libs/angular-route.js"></script>
+        <script src="/static/js/libs/angular-sanitize.js"></script>
+        <script src="/static/js/libs/angular-animate.js"></script>
+        <script src="/static/js/libs/angular-ui-router.js"></script>
 
-      <script src="/static/app/app.js"></script>
-      <script src="/static/app/common/common.controller.js"></script>
-      <script src="/static/app/common/cache/common.factory.js"></script>
-      <script src="/static/app/common/cache/common.cache.request.factory.js"></script>
-      <script src="/static/app/common/common.footer.animation.js"></script>
-      <script src="/static/app/common/common.tel.filter.js"></script>
-      <script src="/static/app/common/list/common.list.controller.js"></script>
-      <script src="/static/app/common/list/common.list.directive.js"></script>
-      <script src="/static/app/common/detail/common.detail.controller.js"></script>
-      <script src="/static/app/home/home.controller.js"></script>
-      <script src="/static/app/staff/staff.directive.js"></script>
-      <script src="/static/app/common/select/common.select.directive.js"></script>
-      <script src="/static/app/common/detail/common.detail.directive.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
 
-      <link href="/static/css/normalize.css" rel="stylesheet" type="text/css">
-      <link href="/static/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <script src="/static/app/app.js"></script>
+        <script src="/static/app/common/common.controller.js"></script>
+        <script src="/static/app/common/cache/common.factory.js"></script>
+        <script src="/static/app/common/cache/common.cache.request.factory.js"></script>
+        <script src="/static/app/common/common.footer.animation.js"></script>
+        <script src="/static/app/common/common.tel.filter.js"></script>
+        <script src="/static/app/common/list/common.list.controller.js"></script>
+        <script src="/static/app/common/list/common.list.directive.js"></script>
+        <script src="/static/app/common/detail/common.detail.controller.js"></script>
+        <script src="/static/app/home/home.controller.js"></script>
+        <script src="/static/app/staff/staff.directive.js"></script>
+        <script src="/static/app/common/select/common.select.directive.js"></script>
+        <script src="/static/app/common/detail/common.detail.directive.js"></script>
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-      <link href="/static/css/base.css" rel="stylesheet" type="text/css">
-      <link href="/static/css/animations.css" rel="stylesheet" type="text/css">
+        <link href="/static/css/normalize.css" rel="stylesheet" type="text/css">
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="container" ng-controller="Base as base">
-        <header class="navbar navbar-header">
-            <div class="navbar navbar-default" role="navigation">
-                <div class="container">
-                    <div class="navbar-brand text-uppercase">
-                        <span class="hidden-xs">{{ base.base.heading }}</span>
-                        <span class="visible-xs">{{ base.base.small_heading }}</span>
-                    </div>
-                    <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main_menu__left, #main_menu__right">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+        <link href="/static/css/base.css" rel="stylesheet" type="text/css">
+        <link href="/static/css/animations.css" rel="stylesheet" type="text/css">
+
+    </head>
+    <body ng-controller="Base as base">
+        <md-toolbar layout="row" class="">
+
+            <div flex="50" flex-offset="25" layout="column">
+
+                <div layout="row">
+                    <div class="">
+                        <div class="" role="banner">
+                            <span class="">{{ base.base.heading }}</span>
+                            <span class="">{{ base.base.small_heading }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-          <div class="row" style="margin-top: -20px">
-              <div class="col-sm-4 col-md-4 col-lg-4">
-                  <ul class="nav nav-pills nav-stacked text-center collapse navbar-collapse lead" id="main_menu__left">
-                      <li ng-class="{active: base.isActiveUrl(m.slug)}" ng-repeat="m in base.menu | filter:{side:'left'} | orderBy: 'order'"  role="presentation"><a href="/{{ m.slug }}">{{ m.name }}</a></li>
-                  </ul>
-              </div>
-              <div class="col-sm-4 col-md-4 col-lg-4 hidden-xs "><img src="{{ base.base.logo }}" class="img-thumbnail"></div>
-              <div class="col-sm-4 col-md-4 col-lg-4" >
-                  <ul class="nav nav-pills nav-stacked text-center collapse navbar-collapse lead" id="main_menu__right">
-                      <li ng-class="{active: base.isActiveUrl(m.slug)}" ng-repeat="m in base.menu | filter:{side:'right'} | orderBy: 'order'"  role="presentation"><a href="/{{ m.slug }}">{{ m.name }}</a></li>
-                  </ul>
-              </div>
-          </div>
-          <address class="text-center lead navbar navbar-default ">
-              <a href="tel:{{ base.phone }}" style="display: block; margin-top: 10px">{{ base.phone | tel }}</a>
-          </address>
-      </header>
-      <div class="container theme-showcase main" role="main">
-          <div class="clearfix"></div>
-          <div class="animate-container">
-              <div class="animate animate_for_footer" ui-view></div>
-          </div>
-          <script src="/static/js/libs/jquery-1.9.1.min.js"></script>
-          <script src="/static/js/libs/bootstrap.min.js"></script>
 
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-          <script src="/static/js/animations.js"></script>
-          <div class="footer_container">
-              <footer class="navbar  navbar-default row">
-                  <div class="col-md-12">
-                  <span class="text-center center-block">Официальный ресурс Ненецкого профессионального училища<br>2016</span>
-                      </div>
-              </footer>
-          </div>
-      </div>
-    </div>
-  </body>
+                <div  layout="row">
+                    <div flex="20">
+                        <md-list class="" id="main_menu__left">
+                            <md-list-item ng-class="{active: base.base.isActiveUrl(m.slug)}" ng-repeat="m in base.menu | filter:{side:'left'} | orderBy: 'order'">
+                                <md-button href="/{{ m.slug }}">{{ m.name }}</md-button>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+
+                    <div flex="60" role="banner">
+                        <img src="{{ base.base.logo }}" style="width: 100%">
+                    </div>
+
+                    <div flex="20">
+                        <md-list class="" id="main_menu__right">
+                            <md-list-item ng-class="{active: base.base.isActiveUrl(m.slug)}" ng-repeat="m in base.menu | filter:{side:'right'} | orderBy: 'order'">
+                                <menu-link><md-button href="/{{ m.slug }}">{{ m.name }}</md-button></menu-link>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </div>
+
+                <div layout="row" >
+                    <address layout-align="center center">
+                        <a href="tel:{{ base.base.phone }}">{{ base.base.phone | tel }}</a>
+                    </address>
+                </div>
+
+            </div>
+        </md-toolbar>
+
+        <div layout="'row" class=" main" role="main">
+            <div class="animate-container">
+                <div class="animate animate_for_footer" ui-view></div>
+            </div>
+          <!--<script src="/static/js/libs/jquery-1.9.1.min.js"></script>-->
+
+          <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>-->
+            <script src="/static/js/animations.js"></script>
+            <div class="footer_container">
+                <footer class="">
+                    <div class="">
+                        <span class="">Официальный ресурс Ненецкого профессионального училища<br>2016</span>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </body>
 </html>
 {% endverbatim %}
