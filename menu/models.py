@@ -7,6 +7,8 @@ from django.utils.text import slugify
 from unidecode import unidecode
 from mptt.models import MPTTModel, TreeForeignKey
 
+from djanao.models import BaseModel
+
 nt = namedtuple('Obj', 'content directive many')
 
 
@@ -44,3 +46,35 @@ class Menu(MPTTModel):
         self.slug = slugify(unidecode(self.name))
 
 
+class AbsMenu(BaseModel):
+    name = models.CharField(max_length=50, unique=True)
+    order = models.PositiveSmallIntegerField()
+
+    class Meta:
+        abstract = True
+        ordering = ('order',)
+
+    def __str__(self):
+        return self.name
+
+
+class GroupMenu(AbsMenu):
+    blank = models.BooleanField(default=False)
+
+
+class MainMenu(AbsMenu):
+    group = models.ForeignKey(GroupMenu, related_name='main_menus')
+
+    class Meta:
+        unique_together = ('group', 'order')
+
+
+class SubMenu(AbsMenu):
+    main_menu = models.ForeignKey(MainMenu, related_name='sub_menus')
+    slug = models.SlugField(blank=True, unique=True, null=True)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, blank=True, null=True, verbose_name='тип')
+    object_id = models.PositiveIntegerField(blank=True, null=True)
+    content_object = TupleGenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        unique_together = ('main_menu', 'order')

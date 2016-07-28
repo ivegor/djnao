@@ -11,13 +11,15 @@
         <base href="/">
         <title>Bootstrap 101 Template</title>
 
+
+
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
         <script src="/static/js/libs/angular.js"></script>
         <script src="/static/js/libs/angular-route.js"></script>
         <script src="/static/js/libs/angular-sanitize.js"></script>
         <script src="/static/js/libs/angular-animate.js"></script>
         <script src="/static/js/libs/angular-ui-router.js"></script>
-
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
@@ -26,84 +28,147 @@
         <script src="/static/app/common/common.controller.js"></script>
         <script src="/static/app/common/cache/common.factory.js"></script>
         <script src="/static/app/common/cache/common.cache.request.factory.js"></script>
-        <script src="/static/app/common/common.footer.animation.js"></script>
+        <!--<script src="/static/app/common/common.footer.animation.js"></script>-->
         <script src="/static/app/common/common.tel.filter.js"></script>
-        <script src="/static/app/common/list/common.list.controller.js"></script>
-        <script src="/static/app/common/list/common.list.directive.js"></script>
-        <script src="/static/app/common/detail/common.detail.controller.js"></script>
+        <!--<script src="/static/app/common/list/common.list.controller.js"></script>-->
+        <!--<script src="/static/app/common/list/common.list.directive.js"></script>-->
+        <!--<script src="/static/app/common/detail/common.detail.controller.js"></script>-->
         <script src="/static/app/home/home.controller.js"></script>
-        <script src="/static/app/staff/staff.directive.js"></script>
-        <script src="/static/app/common/select/common.select.directive.js"></script>
-        <script src="/static/app/common/detail/common.detail.directive.js"></script>
+        <!--<script src="/static/app/staff/staff.directive.js"></script>-->
+        <!--<script src="/static/app/common/select/common.select.directive.js"></script>-->
+        <!--<script src="/static/app/common/detail/common.detail.directive.js"></script>-->
+
 
         <link href="/static/css/normalize.css" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
         <link href="/static/css/base.css" rel="stylesheet" type="text/css">
         <link href="/static/css/animations.css" rel="stylesheet" type="text/css">
+        <link href="/static/css/menu.css" rel="stylesheet" type="text/css">
 
     </head>
     <body ng-controller="Base as base">
-        <md-toolbar layout="row" class="">
-
-            <div flex="50" flex-offset="25" layout="column">
-
-                <div layout="row">
-                    <div class="">
-                        <div class="" role="banner">
-                            <span class="">{{ base.base.heading }}</span>
-                            <span class="">{{ base.base.small_heading }}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div  layout="row">
-                    <div flex="20">
-                        <md-list class="" id="main_menu__left">
-                            <md-list-item ng-class="{active: base.base.isActiveUrl(m.slug)}" ng-repeat="m in base.menu | filter:{side:'left'} | orderBy: 'order'">
-                                <md-button href="/{{ m.slug }}">{{ m.name }}</md-button>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-
-                    <div flex="60" role="banner">
-                        <img src="{{ base.base.logo }}" style="width: 100%">
-                    </div>
-
-                    <div flex="20">
-                        <md-list class="" id="main_menu__right">
-                            <md-list-item ng-class="{active: base.base.isActiveUrl(m.slug)}" ng-repeat="m in base.menu | filter:{side:'right'} | orderBy: 'order'">
-                                <menu-link><md-button href="/{{ m.slug }}">{{ m.name }}</md-button></menu-link>
-                            </md-list-item>
-                        </md-list>
-                    </div>
-                </div>
-
-                <div layout="row" >
-                    <address layout-align="center center">
-                        <a href="tel:{{ base.base.phone }}">{{ base.base.phone | tel }}</a>
-                    </address>
-                </div>
-
-            </div>
+        <md-toolbar>
+            <md-button class="md-icon-button" ng-click="openMenu()" hide-gt-sm aria-label="Toggle Menu">
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            </md-button>
+            <span class="">{{ base.base.heading }}</span>
+            <span class="">{{ base.base.small_heading }}</span>
         </md-toolbar>
 
-        <div layout="'row" class=" main" role="main">
-            <div class="animate-container">
-                <div class="animate animate_for_footer" ui-view></div>
-            </div>
-          <!--<script src="/static/js/libs/jquery-1.9.1.min.js"></script>-->
+        <div class="container" layout="row" flex>
 
-          <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>-->
-            <script src="/static/js/animations.js"></script>
-            <div class="footer_container">
-                <footer class="">
-                    <div class="">
-                        <span class="">Официальный ресурс Ненецкого профессионального училища<br>2016</span>
-                    </div>
-                </footer>
-            </div>
+            <!--<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" flex>-->
+                <!--<header class="nav-header" role="banner">-->
+                    <!--<img src="{{ base.base.logo }}" style="width: 100%">-->
+                <!--</header>-->
+
+                <!--<div>-->
+                    <!--<address layout-align="center center">-->
+                        <!--<a href="tel:{{ base.base.phone }}">{{ base.base.phone | tel }}</a>-->
+                    <!--</address>-->
+                <!--</div>-->
+
+                    <!--<md-list>-->
+                        <!--<md-list-item class="md-1-line" ng-class="{active: base.base.isActiveUrl(m.slug)}" ng-repeat="m in base.menu | orderBy: 'order'">-->
+                            <!--<md-button style="width: 100%" href="/{{ m.slug }}" class="menu">-->
+                                <!--{{ m.name }}-->
+                            <!--</md-button>-->
+                        <!--</md-list-item>-->
+                    <!--</md-list>-->
+
+            <!--</md-sidenav>-->
+
+
+            <md-sidenav class="side_nav"
+                md-component-id="left" hide-print
+                md-is-locked-open="$mdMedia('gt-sm')">
+
+                <header class="nav-header">
+                  <a ng-href="/" class="docs-logo">
+                    <img src="{{ base.base.logo }}" style="width: 100%" alt="" />
+                  </a>
+                    <span class="glyphicons glyphicons-lightbulb" area-hiden=""></span>
+                </header>
+                <md-content flex role="navigation">
+                    <ul class="menu">
+                        <li ng-repeat="group in base.menu" class="parent-list-item">
+                            <h2 ng-if="group.name" class="menu-heading md-subhead">{{group.name}}</h2>
+                            <ul class="menu__main_menu">
+                                <li ng-repeat="mainMenu in group.main_menus" ng-class="{'childActive' : isSectionSelected(child)}">
+
+                                    <button class="md-button-toggle md-button md-ink-ripple">
+                                        <div flex="" layout="row" class="ng-binding ng-scope layout-row flex">
+                                            {{mainMenu.name}}
+                                            <span flex="" class="flex"></span>
+                                            <span aria-hidden="true" class="md-toggle-icon" ng-class="{'toggled' : isOpen()}">
+                                                <md-icon md-svg-icon="md-toggle-arrow" aria-hidden="true">
+                                                    <svg version="1.1" x="0px" y="0px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                                                        <path d="M24 16l-12 12 2.83 2.83 9.17-9.17 9.17 9.17 2.83-2.83z"></path>
+                                                        <path d="M0 0h48v48h-48z" fill="none"></path>
+                                                    </svg>
+                                                </md-icon>
+                                            </span>
+                                        </div>
+                                    </button>
+
+                                    <ul ng-if="mainMenu.sub_menus" class="menu__sub_menu">
+                                        <li ng-repeat="subMenu in mainMenu.sub_menus">
+                                            <a class="md-button md-ink-ripple menu__sub_menu__link" ng-transclude="" ng-class="{'active' : isSelected()}" ng-href="{{subMenu.slug}}" ng-click="focusSection()" href="CSS/typography" aria-label="Typography">
+                                                <span>
+                                                    {{subMenu.name}}
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </md-content>
+<!--
+                <md-content flex role="navigation">
+                    {{base.menu}}
+                  <ul class="docs-menu">
+                    <li ng-repeat="section in base.menu" class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionSelected(section)}">
+                      <h2 class="menu-heading md-subhead" id="heading_{{ section.name | nospace }}">
+                        {{section.name}}
+                      </h2>
+                      <menu-link section="section" ng-if="section.type === 'link' && !section.hidden"></menu-link>
+
+                      <menu-toggle section="section" ng-if="section.type === 'toggle' && !section.hidden"></menu-toggle>
+
+                      <ul ng-if="section.children" class="menu-nested-list">
+                        <li ng-repeat="child in section.children" ng-class="{'childActive' : isSectionSelected(child)}">
+                          <menu-link section="child" ng-if="child.type === 'link'"></menu-link>
+
+                          <menu-toggle section="child" ng-if="child.type === 'toggle'"></menu-toggle>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </md-content>
+-->
+            </md-sidenav>
+
+
+
+            <md-content class=" main" role="main" flex>
+                <div class="animate-container">
+                    <div class="animate animate_for_footer" ui-view></div>
+                </div>
+
+                <div class="footer_container">
+                    <footer class="">
+                        <div class="">
+                            <span class="">Официальный ресурс Ненецкого профессионального училища<br>2016</span>
+                        </div>
+                    </footer>
+                </div>
+            </md-content>
+
         </div>
+
+        <script src="/static/js/animations.js"></script>
     </body>
 </html>
 {% endverbatim %}

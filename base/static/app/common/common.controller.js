@@ -10,7 +10,7 @@
                 vm.base = response.data;
             });
             $http.get('/api/menu').then(function(response){
-                vm.menu = response.data['menu'];
+                vm.menu = response.data;
             });
             vm.isActiveUrl = function(route) {
                 return $location.path().split('/')[1] == route;
