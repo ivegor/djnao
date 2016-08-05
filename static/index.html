@@ -47,60 +47,32 @@
 
     </head>
     <body ng-controller="Base as base">
-        <md-toolbar>
-            <md-button class="md-icon-button" ng-click="openMenu()" hide-gt-sm aria-label="Toggle Menu">
-                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-            </md-button>
-            <span class="">{{ base.base.heading }}</span>
-            <span class="">{{ base.base.small_heading }}</span>
-        </md-toolbar>
 
         <div class="container" layout="row" flex>
 
-            <!--<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" flex>-->
-                <!--<header class="nav-header" role="banner">-->
-                    <!--<img src="{{ base.base.logo }}" style="width: 100%">-->
-                <!--</header>-->
-
-                <!--<div>-->
-                    <!--<address layout-align="center center">-->
-                        <!--<a href="tel:{{ base.base.phone }}">{{ base.base.phone | tel }}</a>-->
-                    <!--</address>-->
-                <!--</div>-->
-
-                    <!--<md-list>-->
-                        <!--<md-list-item class="md-1-line" ng-class="{active: base.base.isActiveUrl(m.slug)}" ng-repeat="m in base.menu | orderBy: 'order'">-->
-                            <!--<md-button style="width: 100%" href="/{{ m.slug }}" class="menu">-->
-                                <!--{{ m.name }}-->
-                            <!--</md-button>-->
-                        <!--</md-list-item>-->
-                    <!--</md-list>-->
-
-            <!--</md-sidenav>-->
-
-
-            <md-sidenav class="side_nav"
+            <md-sidenav class="side_nav md-whiteframe-z2"
                 md-component-id="left" hide-print
                 md-is-locked-open="$mdMedia('gt-sm')">
 
                 <header class="nav-header">
-                  <a ng-href="/" class="docs-logo">
+                  <a ng-href="/" class="docs-logo" ng-click="base.focusSection()">
                     <img src="{{ base.base.logo }}" style="width: 100%" alt="" />
+                      <span class="">{{ base.base.heading }}</span>
+                    <span class="">{{ base.base.small_heading }}</span>
                   </a>
-                    <span class="glyphicons glyphicons-lightbulb" area-hiden=""></span>
                 </header>
                 <md-content flex role="navigation">
                     <ul class="menu">
                         <li ng-repeat="group in base.menu" class="parent-list-item">
                             <h2 ng-if="group.name" class="menu-heading md-subhead">{{group.name}}</h2>
                             <ul class="menu__main_menu">
-                                <li ng-repeat="mainMenu in group.main_menus" ng-class="{'childActive' : isSectionSelected(child)}">
+                                <li ng-repeat="mainMenu in group.main_menus" ng-class="{'childActive' : base.isSectionSelected(child)}">
 
-                                    <button class="md-button-toggle md-button md-ink-ripple">
+                                    <md-button class="md-button-toggle md-button md-ink-ripple">
                                         <div flex="" layout="row" class="ng-binding ng-scope layout-row flex">
                                             {{mainMenu.name}}
                                             <span flex="" class="flex"></span>
-                                            <span aria-hidden="true" class="md-toggle-icon" ng-class="{'toggled' : isOpen()}">
+                                            <span aria-hidden="true" class="md-toggle-icon" ng-class="{'toggled' : base.isOpen()}">
                                                 <md-icon md-svg-icon="md-toggle-arrow" aria-hidden="true">
                                                     <svg version="1.1" x="0px" y="0px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
                                                         <path d="M24 16l-12 12 2.83 2.83 9.17-9.17 9.17 9.17 2.83-2.83z"></path>
@@ -109,15 +81,15 @@
                                                 </md-icon>
                                             </span>
                                         </div>
-                                    </button>
+                                    </md-button>
 
-                                    <ul ng-if="mainMenu.sub_menus" class="menu__sub_menu">
+                                    <ul ng-if="mainMenu.sub_menus" class="sub_menu">
                                         <li ng-repeat="subMenu in mainMenu.sub_menus">
-                                            <a class="md-button md-ink-ripple menu__sub_menu__link" ng-transclude="" ng-class="{'active' : isSelected()}" ng-href="{{subMenu.slug}}" ng-click="focusSection()" href="CSS/typography" aria-label="Typography">
+                                            <md-button class="md-button md-ink-ripple sub_menu__link" ng-transclude="" ng-class="{'active' : base.isSelected(subMenu.slug)}" ng-href="{{subMenu.slug}}" ng-click="base.focusSection()" href="CSS/typography" aria-label="Typography">
                                                 <span>
                                                     {{subMenu.name}}
                                                 </span>
-                                            </a>
+                                            </md-button>
                                         </li>
                                     </ul>
                                 </li>
@@ -125,34 +97,16 @@
                         </li>
                     </ul>
                 </md-content>
-<!--
-                <md-content flex role="navigation">
-                    {{base.menu}}
-                  <ul class="docs-menu">
-                    <li ng-repeat="section in base.menu" class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionSelected(section)}">
-                      <h2 class="menu-heading md-subhead" id="heading_{{ section.name | nospace }}">
-                        {{section.name}}
-                      </h2>
-                      <menu-link section="section" ng-if="section.type === 'link' && !section.hidden"></menu-link>
-
-                      <menu-toggle section="section" ng-if="section.type === 'toggle' && !section.hidden"></menu-toggle>
-
-                      <ul ng-if="section.children" class="menu-nested-list">
-                        <li ng-repeat="child in section.children" ng-class="{'childActive' : isSectionSelected(child)}">
-                          <menu-link section="child" ng-if="child.type === 'link'"></menu-link>
-
-                          <menu-toggle section="child" ng-if="child.type === 'toggle'"></menu-toggle>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </md-content>
--->
             </md-sidenav>
 
-
-
             <md-content class=" main" role="main" flex>
+                <md-toolbar>
+                    <md-button class="md-icon-button" ng-click="base.openMenu()" hide-gt-sm aria-label="Toggle Menu">
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    </md-button>
+
+                </md-toolbar>
+
                 <div class="animate-container">
                     <div class="animate animate_for_footer" ui-view></div>
                 </div>
@@ -167,6 +121,9 @@
             </md-content>
 
         </div>
+        <script>
+
+        </script>
 
         <script src="/static/js/animations.js"></script>
     </body>

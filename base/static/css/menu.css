@@ -78,24 +78,24 @@ body[dir=rtl] .menu .md-button {
   width: 100%;
 }
 
-.docs-menu md-select md-select-label {
+.menu md-select md-select-label {
   justify-content: flex-end;
   padding-top: 10px;
 }
 
-.docs-menu md-select md-select-label span {
+.menu md-select md-select-label span {
   margin-right: auto;
   padding-left: 13px;
 }
 
-.docs-menu md-select .md-select-icon {
+.menu md-select .md-select-icon {
   margin-right: 28px;
 }
 
-.docs-menu button.md-button::-moz-focus-inner {
+.menu md-button.md-button::-moz-focus-inner {
   padding: 0;
 }
-.docs-menu .md-button.active {
+.menu .md-button.active {
   background: #267ED5;
 }
 .menu-heading {
@@ -115,12 +115,7 @@ body[dir=rtl] .menu-heading {
   text-align: right;
 }
 
-
-.docs-menu li.parentActive,
-.docs-menu li.parentActive .menu-toggle-list {
-  /*background-color: #2C80D2 !important;*/
-}
-.menu-toggle-list {
+.menu .sub_menu {
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -130,8 +125,12 @@ body[dir=rtl] .menu-heading {
   -moz-transition-property: height;
   transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
   transition-property: height;
+  display: none;
 }
-.docs-menu .menu-toggle-list a.md-button {
+.menu .md-button+.sub_menu{
+  display: block;
+}
+.menu .sub_menu__link {
   display: block;
   padding: 0 16px 0 32px;
   text-transform: none;
@@ -159,6 +158,9 @@ body[dir=rtl] .menu-heading {
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
 }
-.menu__sub_menu__link{
+.sub_menu__link{
     padding-left: 25px;
+}
+md-toolbar{
+  background-color: #106CC8 !important;
 }
