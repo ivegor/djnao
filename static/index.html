@@ -14,12 +14,14 @@
 
 
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
-        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <link href="/static/css/v-accordion.min.css" rel="stylesheet" />
+
         <script src="/static/js/libs/angular.js"></script>
         <script src="/static/js/libs/angular-route.js"></script>
         <script src="/static/js/libs/angular-sanitize.js"></script>
         <script src="/static/js/libs/angular-animate.js"></script>
         <script src="/static/js/libs/angular-ui-router.js"></script>
+        <script src="/static/js/libs/v-accordion.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
@@ -30,7 +32,7 @@
         <script src="/static/app/common/cache/common.cache.request.factory.js"></script>
         <!--<script src="/static/app/common/common.footer.animation.js"></script>-->
         <script src="/static/app/common/common.tel.filter.js"></script>
-        <!--<script src="/static/app/common/list/common.list.controller.js"></script>-->
+        <script src="/static/app/common/list/common.list.controller.js"></script>
         <!--<script src="/static/app/common/list/common.list.directive.js"></script>-->
         <!--<script src="/static/app/common/detail/common.detail.controller.js"></script>-->
         <script src="/static/app/home/home.controller.js"></script>
@@ -46,84 +48,80 @@
         <link href="/static/css/menu.css" rel="stylesheet" type="text/css">
 
     </head>
-    <body ng-controller="Base as base">
+    <body ng-controller="Base as base" class="layout-row" layout="row">
 
-        <div class="container" layout="row" flex>
-
-            <md-sidenav class="side_nav md-whiteframe-z2"
+            <md-sidenav class="side_nav md-whiteframe-z2 md-sidenav-left"
                 md-component-id="left" hide-print
                 md-is-locked-open="$mdMedia('gt-sm')">
 
-                <header class="nav-header">
-                  <a ng-href="/" class="docs-logo" ng-click="base.focusSection()">
-                    <img src="{{ base.base.logo }}" style="width: 100%" alt="" />
-                      <span class="">{{ base.base.heading }}</span>
-                    <span class="">{{ base.base.small_heading }}</span>
+                <header>
+                  <a ng-href="/" class="side_nav__header ng-click="base.focusSection()">
+                      <img src="{{ base.base.logo }}" style="width: 100%" alt="" />
+                      <h2 class="md-subhead side_nav__header__title">{{ base.base.heading }}</h2>
                   </a>
                 </header>
                 <md-content flex role="navigation">
-                    <ul class="menu">
-                        <li ng-repeat="group in base.menu" class="parent-list-item">
-                            <h2 ng-if="group.name" class="menu-heading md-subhead">{{group.name}}</h2>
-                            <ul class="menu__main_menu">
-                                <li ng-repeat="mainMenu in group.main_menus" ng-class="{'childActive' : base.isSectionSelected(child)}">
 
-                                    <md-button class="md-button-toggle md-button md-ink-ripple">
-                                        <div flex="" layout="row" class="ng-binding ng-scope layout-row flex">
-                                            {{mainMenu.name}}
-                                            <span flex="" class="flex"></span>
-                                            <span aria-hidden="true" class="md-toggle-icon" ng-class="{'toggled' : base.isOpen()}">
-                                                <md-icon md-svg-icon="md-toggle-arrow" aria-hidden="true">
-                                                    <svg version="1.1" x="0px" y="0px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
-                                                        <path d="M24 16l-12 12 2.83 2.83 9.17-9.17 9.17 9.17 2.83-2.83z"></path>
-                                                        <path d="M0 0h48v48h-48z" fill="none"></path>
-                                                    </svg>
-                                                </md-icon>
-                                            </span>
-                                        </div>
-                                    </md-button>
+                    <v-accordion id="my-accordion" control="accordion">
+                        <ul class="menu">
+                            <li ng-repeat="group in base.menu" >
+                                <h2 ng-if="group.name" class="menu-heading md-subhead">{{group.name}}</h2>
 
-                                    <ul ng-if="mainMenu.sub_menus" class="sub_menu">
-                                        <li ng-repeat="subMenu in mainMenu.sub_menus">
-                                            <md-button class="md-button md-ink-ripple sub_menu__link" ng-transclude="" ng-class="{'active' : base.isSelected(subMenu.slug)}" ng-href="{{subMenu.slug}}" ng-click="base.focusSection()" href="CSS/typography" aria-label="Typography">
-                                                <span>
-                                                    {{subMenu.name}}
+                                <v-pane id="{{ mainMenu.name }}" ng-repeat="mainMenu in group.main_menus" >
+
+                                    <v-pane-header>
+                                        <md-button>
+                                            <div layout="row">
+                                                {{mainMenu.name}}
+                                                <span class="flex"></span>
+                                                <span aria-hidden="true" class="menu__icon_arrow">
+                                                    <md-icon aria-hidden="true">
+                                                        <svg version="1.1" x="0px" y="0px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                                                            <path d="M24 16l-12 12 2.83 2.83 9.17-9.17 9.17 9.17 2.83-2.83z"></path>
+                                                            <path d="M0 0h48v48h-48z" fill="none"></path>
+                                                        </svg>
+                                                    </md-icon>
                                                 </span>
-                                            </md-button>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                                            </div>
+                                        </md-button>
+                                    </v-pane-header>
+
+                                    <v-pane-content>
+                                        <md-button ng-repeat="subMenu in mainMenu.sub_menus" class="sub_menu__link" ng-href="{{subMenu.slug}}" ng-click="base.focusSection()" ng-class="{'active': base.isActive(subMenu.slug, $pane)}">
+                                                {{subMenu.name}}
+                                        </md-button>
+                                    </v-pane-content>
+
+                                </v-pane>
+
+                            </li>
+                        </ul>
+                    </v-accordion>
+
                 </md-content>
             </md-sidenav>
-
-            <md-content class=" main" role="main" flex>
-                <md-toolbar>
-                    <md-button class="md-icon-button" ng-click="base.openMenu()" hide-gt-sm aria-label="Toggle Menu">
-                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-                    </md-button>
+            <div layout="column" tabindex="-1" role="main" flex class="layout-column flex">
+                <md-toolbar layout="row">
+                        <md-button class="md-icon-button" ng-click="base.openMenu()" hide-gt-sm aria-label="Toggle Menu">
+                            <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                        </md-button>
+                        <h1 class="toolbar__title">НАО</h1>
 
                 </md-toolbar>
+                <md-content>
+                    <div>
+                        <div ui-view></div>
+                    </div>
 
-                <div class="animate-container">
-                    <div class="animate animate_for_footer" ui-view></div>
-                </div>
-
-                <div class="footer_container">
-                    <footer class="">
-                        <div class="">
-                            <span class="">Официальный ресурс Ненецкого профессионального училища<br>2016</span>
-                        </div>
-                    </footer>
-                </div>
-            </md-content>
-
-        </div>
-        <script>
-
-        </script>
+                    <div class="footer_container">
+                        <footer class="">
+                            <div class="">
+                                <span class="">Официальный ресурс Ненецкого профессионального училища<br>2016</span>
+                            </div>
+                        </footer>
+                    </div>
+                </md-content>
+            </div>
 
         <script src="/static/js/animations.js"></script>
     </body>

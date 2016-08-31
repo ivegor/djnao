@@ -22,10 +22,38 @@
                 $mdSidenav('left').toggle();
             };
             vm.isOpen = function(){
-                return 1
+                return 0
             };
-            vm.isSectionSelected = function(){
-                return 1
+            vm.isSectionSelected = function(mainMenu){
+                for (var ob in mainMenu.sub_menus){
+                    var active = mainMenu.sub_menus[ob]['slug'] == $location.path().split('/')[1]
+                    if (active){
+                        return 1
+                    }
+                }
+                return 0
+            };
+            vm.toggleMenu = function(){
+
+            };
+            $scope.initOpen =  function(){
+
+                for (var ob in sub_menus){
+                    var active = sub_menus[ob]['slug'] == $location.path().split('/')[1];
+                    if (active){
+                        return 1
+                    }
+                }
+                return 0
+            };
+            vm.isActive = function(slug, pane){
+                if (slug == $location.path().split('/')[1]){
+                    if (!vm.init){
+                        vm.init = 1;
+                        pane.expand();
+                    }
+                    return 1
+                }
             }
         }
 })();

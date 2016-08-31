@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('app', ['ngMaterial', 'ui.router', 'ngSanitize', 'ngAnimate'])
+        .module('app', ['ngMaterial', 'ui.router', 'ngSanitize', 'ngAnimate', 'vAccordion'])
         .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
