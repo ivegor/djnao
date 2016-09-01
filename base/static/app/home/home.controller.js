@@ -3,9 +3,9 @@
     angular
         .module('app')
         .controller('HomeController', HomeController);
-    HomeController.$inject = ['$http', 'DataCache'];
+    HomeController.$inject = ['$http', 'DataCache', 'Carousel'];
 
-    function HomeController($http, DataCache) {
+    function HomeController($http, DataCache, Carousel) {
             var vm = this;
             vm.slider = DataCache.get('slider');
             if (!vm.slider) {
@@ -15,5 +15,6 @@
                     vm.slider = response;
                 });
             }
+            vm.carousel = Carousel;
         }
 })();

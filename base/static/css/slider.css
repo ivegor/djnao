@@ -1,0 +1,36 @@
+.carousel__button{
+    background-color:rgba(16,108,200, 0.7);
+    margin: 0;
+    height: 100%;
+    position: absolute;
+    top:0;
+    z-index: 2
+}
+.md-button.carousel__button.md-focused{
+    background-color:rgba(16,108,200, 0.7) !important;
+}
+.carousel__button__left{
+    left: 0;
+}
+.carousel__button__right{
+    right: 0;
+}
+.slider__container{
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width:60%;
+    text-align: center;
+
+}
+.slider__container>*{
+    color: white;
+    text-shadow: 2px 2px 2px rgb(16,108,200);
+}
+slidecontainer{
+    position: relative !important;
+    margin-bottom: -5px;
+}
+.ng-carousel{
+    background-color: #267ED5;
+}

@@ -2,18 +2,29 @@ footer{
     margin-top: 40px;
 }
 .toolbar__title{
-    margin: 0;
+    margin: 10px
 }
-@media (max-width: 768px) {
-    .scroll_menu_container{
-        overflow-x:scroll;
-        overflow-y:hidden;
-    }
-    .sub_menu__left{
+/*@media (max-width: 768px) {*/
+    /*.scroll_menu_container{*/
+        /*overflow-x:scroll;*/
+        /*overflow-y:hidden;*/
+    /*}*/
+    /*.sub_menu__left{*/
 
-        width: 9999px;
-    }
-    .item__sub_menu__left{
-        float: left !important;
-    }
+        /*width: 9999px;*/
+    /*}*/
+    /*.item__sub_menu__left{*/
+        /*float: left !important;*/
+    /*}*/
+/*}*/
+.icon-bar {
+    background-color: white;
+}
+.icon-bar {
+    display: block;
+    width: 50px;
+    height: 5px;
+    border-radius: 1px;
+    margin: 10px auto;
+
 }

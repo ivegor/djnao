@@ -1,20 +1,22 @@
-<!-- /Style Slider -->
-<div  id="Carousel" class="carousel slide carousel-slideSequence" data-ride="carousel">
-    <ol class="carousel-indicators">
-    <li data-target="#Carousel" data-slide-to="{{ $index }}" ng-class="{active:$first}" ng-repeat="slide in home.slider"></li>
-    </ol>
-    <div class="carousel-inner">
-     <div class="item" ng-class="{active:$first}" ng-repeat="slide in home.slider">
-         <img src="{{ slide.image }}" class="center-block" width="100%">
-         <div class="container">
-             <div class="carousel-caption" style="color:{{ slider.color }}">
-                <h3 class="hidden-xs">{{ slide.h3 }}</h3>
-                <p class="hidden-xs">{{ slide.p }}</p>
-                <p ng-show="slide.link"><a class="btn btn-primary " href="{{ slide.link }}" role="button">Смотреть</a></p>
-             </div>
-         </div>
-     </div>
+<div>
+    <div ng-carousel ng-carousel-name="carousel" ng-carousel-watch="home.slider" ng-carousel-timer="2500">
+        <slidecontainer>
+            <slide ng-repeat="s in home.slider">
+                <img src="{{s.image}}" draggable="false" style="width: 100%">
+                <div ng-show="s.h3||s.p||s.link" class="slider__container md-whiteframe-24dp" style="color:{{ slider.color }}">
+                    <h3 hide-xs class="hidden-xs">{{ s.h3 }}</h3>
+                    <p class="hidden-xs">{{ s.p }}</p>
+
+                        <md-button ng-show="s.link" href="{{ s.link }}" role="button">Смотреть</md-button>
+
+                </div>
+            </slide>
+        </slidecontainer>
+        <md-button hide-xs class="carousel__button carousel__button__left"
+                   ng-click="home.carousel.get('carousel').previous()">
+        </md-button>
+        <md-button hide-xs class="carousel__button carousel__button__right"
+                   ng-click="home.carousel.get('carousel').next()">
+        </md-button>
     </div>
-    <a class="left carousel-control" href="#Carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <a class="right carousel-control" href="#Carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
- </div>
+</div>
