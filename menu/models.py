@@ -9,18 +9,18 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 from djanao.models import BaseModel
 
-nt = namedtuple('Obj', 'content directive many')
+nt = namedtuple('Obj', 'content template many')
 
 
 class TupleGenericForeignKey(GenericForeignKey):
     def __get__(self, instance, instance_type=None):
         g = super().__get__(instance, instance_type)
         if g:
-            return nt(g, g.directive(), False)
+            return nt(g, g.template(), False)
         elif instance.content_type:
             model = instance.content_type.model_class()
-            directive = model.directive
-            return nt(model.objects.all(), directive(), True)
+            template = model.template
+            return nt(model.objects.all(), template(), True)
         else:
             return
 

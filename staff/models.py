@@ -13,7 +13,7 @@ class Staff(BaseModel):
                  ('педагоги', 'педагог'),
                  ('обслуживающий персонал', 'обслуживающий персонал'))
     category = models.CharField(choices=CATEGORIES, max_length=64)
-    image = ProcessedImageField(upload_to='detail', processors=[ResizeToFill(400, 400)], blank=True)
+    image = ProcessedImageField(upload_to='detail', processors=[ResizeToFill(240, 240)], blank=True)
     text = models.CharField(max_length=255)
 
     def __str__(self):

@@ -14,23 +14,12 @@
                 controller  : 'HomeController',
                 controllerAs : 'home'
             })
-            .state('menu', {
+            .state('category', {
                 url: '/:category',
-                templateUrl: '/static/views/listview.html',
-                controller: 'ListController',
-                controllerAs: 'list',
-                abstract: true
-            })
-                .state('menu.list', {
-                    url: '',
-                    templateUrl: '/static/views/baselist.html'
-                })
-                .state('menu.detail', {
-                    url: '/:page',
-                    templateUrl: '/static/views/detailview.html',
-                    controller: 'DetailController',
-                    controllerAs: 'detail'
-                });
+                templateUrl : '/static/views/switch.html',
+                controller  : 'Switch',
+                controllerAs : 'switch'
+            });
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
     }
