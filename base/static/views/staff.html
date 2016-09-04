@@ -1,12 +1,9 @@
-<div class="navbar-page well well-sm">
-
-</div>
-<section  md-whiteframe="22">
+<section  md-whiteframe="10" ng-controller="staff as st" ng-cloak style="position: relative">
     <md-toolbar layout="row"  ng-model="category" ng-init="category='администрация'">
-            <md-button flex ng-repeat="cat in ['администрация', 'педагоги', 'обслуживающий персонал']" ng-click="category" ng-value="cat">{{cat}}</md-button>
+            <md-button flex ng-repeat="cat in st.category" ng-click="st.cur_cat=cat" ng-class="{'active':st.cur_cat==cat}">{{cat}}</md-button>
     </md-toolbar>
-    <md-content layout="row" layout-xs="column">
-        <md-card flex layout="column" class="layout-column" md-theme="default" md-theme-watch ng-repeat="staff in switch.content|filter:{category} | orderBy: 'order'">
+    <md-content layout="row" layout-wrap layout-align="space-around start">
+        <md-card flex="45" flex-xs="100" layout="column" ng-repeat="staff in switch.content|filter:st.cur_cat | orderBy: '-additionalinformation.likes'">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{ staff.name }}</span>
@@ -14,22 +11,51 @@
                 </md-card-title-text>
             </md-card-title>
 
-            <md-card-content layout="row" layout-align="space-between" class="layout-align-space-between-stretch layout-row">
-                <div class="md-media-xl card-media" ng-class="{'grey_background': !staff.image}">
-                    <img ng-if="staff.image" class="img-thumbnail" src="media/{{ staff.image }}" width="100%">
+            <md-card-content layout="row" layout-align="space-between"  class="layout-align-space-between-stretch layout-row">
+                <div class="md-media-xl card-media">
+                    <span ng-if="!staff.image">
+                        <md-icon ng-if="staff.sex" style="width:100%; height: 100%" aria-hidden="true">
+                            <svg viewBox="0 0 128 128" height="100%" width="100%" id="svg-5" x="384" y="256" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                                <path fill="#FFFF8D" d="M0 0h128v128H0z"></path>
+                                <path fill="#C2C2C2" d="M51.7 31.4v-22s-19.6 2.5-15.8 29.9c11 0 14.8-4.3 15.8-7.9z"></path>
+                                <path fill="#848484" d="M94.1 39.8c.1-1 0-2-.1-3 0-1-.1-1.9-.2-2.9-.2-1.8-.4-3.5-.8-5.2-.6-2.9-1.5-5.8-2.9-8.4-1.1-2.2-2.6-4.2-4.3-6-1.6-1.6-3.3-2.9-5.3-3.9-1.8-1-3.8-1.7-5.8-2.2-2-.5-4-.8-6-.9-1.9-.1-3.8-.1-5.7 0-1.7.1-3.3.3-5 .6-1.3.2-2.5.5-3.8.8l-2.2.6-.4.1v20.8c0 1-.1 1.8.4 2.7.2.3.5.6.6.9.3.9.7 1.8 1.2 2.7 1.1 1.8 2.7 3.4 4.7 4.3 2.4 1.1 5.1 1.4 7.8 1.6 4.8.3 9.6.4 14.3.3 2.2 0 4.3-.3 6.4-.9 1.2-.3 2.4-.6 3.6-1 .6-.2 1.2-.4 1.8-.5.6-.2 1.2-.5 1.7-.5z"></path>
+                                <path fill="#FFE0B2" d="M66.8 116.8l17.9-8.7 3.1-8.2c-15.1-17 1.2-31.6 2.3-32.5h.1l13.2-11.1c1.5-1.2 2.5-3 2.8-5 .6-4.4-2.5-8.4-6.9-9.1-1.5-.2-3 0-4.3.6-.2-1-.5-1.9-.8-2.9-26.9 3.7-37.9-2.5-42.4-8.4-1.6 2.6-5.1 6.1-15.8 7.9-.2.9-.5 2-.8 3.1-1.2-.4-2.4-.6-3.8-.4-4.4.6-7.5 4.7-6.9 9.1.3 2 1.3 3.8 2.8 5l7.5 6.4c4.2 4.5 18.4 21.7 9 37l.7 3.7 4.7 4.6 17.6 8.9z"></path>
+                                <path fill="#055524" d="M39.8 104.7zm54.3-.4l-.8 1.5-6.8 12.1V128H128v-2.3z"></path>
+                                <path fill="#FFE0B2" d="M40.4 103.9c-.2.2-.3.4-.5.5 0 0-.1.1-.1.2v.1l.6-.8z"></path>
+                                <circle fill="#444" cx="80" cy="51.7" r="2"></circle>
+                                <circle fill="#444" cx="54.3" cy="51.7" r="2"></circle>
+                                <path fill="#055524" d="M39.8 104.7c-3.2.9-6.1 2.7-8.6 5.5l-.2.2s-.5.6-1.5 1.7c-.9 1.1-2.2 2.6-3.7 4.5-2.3 2.9-5.1 6.7-8.3 11.4h31v-7.8l-8.7-15.5z"></path>
+                                <path fill="#848484" d="M65.3 67.3s2.7 9.8 14.5 9.8c0 0 3.9-18.5-14.5-18.5v8.7z"></path>
+                                <path fill="#C2C2C2" d="M65.3 67.3v-8.7C46.9 58.6 50.8 77 50.8 77c11.8 0 14.5-9.7 14.5-9.7z"></path>
+                                <path fill="#A7FFEB" d="M80.9 128h5.6v-10.1zm-21 0h13.8l-6.9-10zm-11.5 0h4.3l-4.3-7.8z"></path>
+                                <path fill="#1DE9B6" d="M66.8 118l-.5-.8.5-.4-22.9-17.3h-.1l-3.4 4.4-.6.8 8.6 15.5 4.3 7.8h7.2zm26.5-12.2l.8-1.5-6.4-4.4-20.9 16.9-.5.4.5.8 6.9 10h7.2l5.6-10.1z"></path>
+                            </svg>
+                        </md-icon>
+                        <md-icon ng-if="!staff.sex" style="width:100%; height: 100%" aria-hidden="true">
+                            <svg viewBox="0 0 128 128" height="100%" width="100%" id="svg-7" x="128" y="384" xmlns="http://www.w3.org/2000/svg" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                                <path fill="#FFCC80" d="M41.6 123.8s0 .1-.1.1l.3-.4c-.1.2-.1.2-.2.3z"></path>
+                                <path fill="#80D8FF" d="M0 0h128v128H0z"></path>
+                                <path fill="#5D4037" d="M29.3 123.1c4.1-6.9 7.8-12.4 10.5-16.2 1.4-1.9 2.5-3.4 3.3-4.4l1.7-2s0-.1.1-.1l.3-.3C49 95.4 51.9 91 54.1 87c9.5-17.8 6.1-29.3-.3-35.9-1.6-1.6-3.2-2.9-4.7-4-.9-.6-1.7-1.1-2.4-1.6-1.8-1-3.1-1.6-3.3-1.7-1.3-1.2-2.2-2.9-2.5-4.9-.5-4.3 2.2-6.2 6.1-6.8 1-.1 2-.1 2.9.2 9.6-1.8 11.9-8 13.3-10.6 4 5.7 13.9 9.8 38 6.1C97.1 14.3 84.5 5.4 71 7.4c-4.4.7-8.3 2.4-11.8 4.9l-.1.1c-1.1.8-2.1 1.6-3 2.6l-35 30C12.9 49.8 7.3 58.8 7.3 69.1c0 2.7.4 5.3 1.1 7.8.3 4.9-.1 11.7-2.9 18.6-.2.5-.5 1-.7 1.6-1.2 3.2-1.9 6.6-1.9 10.2 0 8.2 3.5 15.6 9.1 20.7h14.5c1-1.7 1.9-3.4 2.8-4.9zm20.5-90.8z"></path>
+                                <path fill="#FFCC80" d="M63.1 19.8c-1.4 2.6-5.7 8.8-15.3 10.6-.9-.3-1.9-.3-2.9-.2-3.9.6-6.7 4.5-6.1 8.8.3 2 1.2 3.7 2.5 4.9.2.1 1.5.6 3.3 1.7.7.4 1.6 1 2.4 1.6 1.5 1.1 3.1 2.4 4.7 4 6.4 6.6 11.8 18.1 2.3 35.9 0 0 7.3 15.5 23.2 16.9 6.1.5 13.3-5.6 22.1-8.8-.1-.7-.3-1.4-.5-2.1-.3-1.3-3.9-21.5-4.1-28.2-.2-7.4.7-11.9 1.9-14.8h8.8L103 39.7c-.2-2.4-.4-4.7-.7-6.7-.2-1.8-.6-3.5-1.1-5.2-24.2 3.7-34-2.3-38.1-8zm22.3 19.6c0-.9.7-1.6 1.6-1.6.9 0 1.6.7 1.6 1.6 0 .9-.7 1.6-1.6 1.6-.9 0-1.6-.7-1.6-1.6zm-35.6-7.1zm-4.9 68.1s0 .1-.1.1l.3-.4-.2.3z"></path>
+                                <circle fill="#444" cx="86.9" cy="39.4" r="2"></circle>
+                                <path fill="#00BFA5" d="M77.2 98.5C61.3 97.2 54.1 87 54.1 87c-2.2 4-5.1 8.4-8.9 13.1l-.3.4c-.5.7-1.1 1.3-1.7 2-.8 1-2 2.5-3.3 4.4-2.8 3.8-6.5 9.2-10.5 16.2-.9 1.6-1.8 3.2-2.8 4.9h80.8l-.3-1c-2.6-10.3-5.4-21.4-7.7-31.9-8.8 3.1-16.1 3.9-22.2 3.4z"></path>
+                            </svg>
+                        </md-icon>
+                    </span>
+                    <img ng-if="staff.image" class="img-thumbnail" src="{{ staff.image }}" width="100%">
                 </div>
 
                 <md-card-actions layout="column" class="layout-column">
-                    <md-button class="md-icon-button " type="button" aria-label="Favorite">
+                    <div class="center" style="margin-bottom: -10px">{{ staff.additionalinformation.likes }}</div>
+                    <md-button ng-if="staff.additionalinformation" class="md-icon-button" type="button" aria-label="Favorite" ng-click="st.set_like(staff)" ng-class="{'liked': staff.like}">
                         <md-icon aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
                                 <path d="M0 0h24v24h-24z" fill="none"></path>
                                 <path d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31z"></path>
                             </svg>
                         </md-icon>
-                        <div class="md-ripple-container"></div>
                     </md-button>
-                    <md-button class="md-icon-button " type="button" aria-label="Settings">
+                    <md-button class="md-icon-button " type="button" aria-label="Settings" ng-click="st.show($event, staff)">
                         <md-icon aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 18 18" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
                                 <path d="M0 0h18v18h-18z" fill="none"></path>
@@ -37,8 +63,26 @@
                             </svg>
                         </md-icon>
                     </md-button>
-              </md-card-actions>
+                </md-card-actions>
             </md-card-content>
+
+            <div style="visibility: hidden">
+                <div class="md-dialog-container" id="{{ staff.name }}">
+                    <md-dialog layout-padding>
+                        <h2>Pre-Rendered Dialog</h2>
+                        <p>
+                          This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its
+                          template on each opening.
+                          <br/><br/>
+                          The Dialog Element is a static element in the DOM, which is just visually hidden.<br/>
+                          Once the dialog opens, we just fetch the element from the DOM into our dialog and upon close
+                          we restore the element back into its old DOM position.
+                        </p>
+                    </md-dialog>
+                </div>
+            </div>
         </md-card>
     </md-content>
+
 </section>
+

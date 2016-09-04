@@ -56,7 +56,7 @@
   background: #267ED5 !important;
 }
 
-.menu .md-button.active {
+.md-button.active {
   background: #267ED5;
 }
 
@@ -110,3 +110,4 @@ md-toolbar{
 .md-button.md-focused {
     background-color: transparent !important;
   }
+

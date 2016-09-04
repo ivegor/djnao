@@ -4,8 +4,8 @@
         .module('app', ['ngMaterial', 'ui.router', 'ngSanitize', 'ngAnimate', 'vAccordion', 'angular-carousel'])
         .config(config);
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
-    function config($stateProvider, $urlRouterProvider, $locationProvider) {
+    config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
+    function config($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('home', {
@@ -22,5 +22,9 @@
             });
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
+
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     }
 })();

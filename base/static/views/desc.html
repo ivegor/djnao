@@ -1,0 +1,35 @@
+<md-dialog  ng-cloak style="max-width: 648px">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ staff.name }}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon aria-label="Close dialog">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+                </md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <a href="tel:{{ staff.phone }}" ng-if="staff.phone" class="md-subhead center">
+                <md-icon aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" focusable="false">
+                        <g id="phone">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+                        </g>
+                    </svg>
+                </md-icon>
+                {{ staff.phone|tel }}
+            </a>
+            <article ng-if="staff.text">{{ staff.text }}</article>
+            <div ng-if="staff.additionalinformation">
+                <article><span class="staff_information__title">Повышение квалификации:</span> {{ staff.additionalinformation.training }}</article>
+                <div><span class="staff_information__title">Категория:</span> {{ staff.additionalinformation.teacher_category}}</div>
+                <div><span class="staff_information__title">Образование:</span> {{ staff.additionalinformation.education }}</div>
+                <div><span class="staff_information__title">Педагогический опыт:</span> {{ staff.additionalinformation.teach_exp }}</div>
+                <div><span class="staff_information__title">Опыт в училище:</span> {{ staff.additionalinformation.cur_exp }}</div>
+            </div>
+        </div>
+    </md-dialog-content>
+</md-dialog>

@@ -31,3 +31,18 @@ footer{
 .grey_background {
     background-color: #999999
 }
+.liked md-icon{
+    color: rgb(255,82,82)!important;
+}
+.center{
+    text-align: center;
+    display: block;
+}
+
+.staff_information__title {
+    font-weight:bold;
+    border-radius: 2px;
+    padding: 1px;
+    margin-top: 3px;
+}
+

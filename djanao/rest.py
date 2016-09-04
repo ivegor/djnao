@@ -2,6 +2,8 @@ from collections import UserDict
 
 from rest_framework import serializers
 
+from staff.rest import StaffSerializer
+
 
 class DefaultSerializer(serializers.BaseSerializer):
     def to_representation(self, instance):
@@ -14,5 +16,5 @@ class DictWithDefault(UserDict):
 
 
 SERIALIZERS = DictWithDefault({
-
+    'staff': StaffSerializer
 })

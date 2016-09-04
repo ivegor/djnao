@@ -3,8 +3,8 @@
     angular
         .module('app')
         .controller('Base', base);
-        base.$inject = ['$scope', '$http', '$location', '$mdSidenav'];
-        function base($scope, $http, $location, $mdSidenav){
+        base.$inject = ['$http', '$location', '$mdSidenav'];
+        function base($http, $location, $mdSidenav){
             var vm = this;
             $http.get('/api/base').then(function(response){
                 vm.base = response.data;
