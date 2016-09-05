@@ -16,6 +16,16 @@
                         return tel
                 }
             }
-        });
-
+        })
+        .filter('limit_from_size', limit_from_size);
+    limit_from_size.$inject = ['$mdMedia'];
+    function limit_from_size($mdMedia) {
+        return function (text) {
+            if ($mdMedia('xs') && text.length > 100){
+                return text.slice(0,100) + '...'
+            }
+            return text
+        }
+        
+    }
 })();
