@@ -7,7 +7,7 @@ from staff.models import Staff
 
 @api_view(['POST'])
 def like(request):
-    data = json.loads(request.body.decode('utf8'))
+    data = request.data
     id = data.get('id')
     st = Staff.objects.get(id=id)
     st.additionalinformation.likes += 1

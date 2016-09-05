@@ -1,17 +1,6 @@
 from rest_framework import serializers
 
-from menu.models import Menu, GroupMenu, MainMenu, SubMenu
-
-
-class _MenuSerializer(serializers.ModelSerializer):
-    side = serializers.SerializerMethodField()
-
-    def get_side(self, obj):
-        return 'right' if obj.order >= 100 else 'left'
-
-    class Meta:
-        model = Menu
-        fields = ('slug', 'name', 'order', 'side')
+from menu.models import GroupMenu, MainMenu, SubMenu
 
 
 class _SubMenuSerializer(serializers.ModelSerializer):

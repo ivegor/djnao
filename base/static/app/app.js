@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('app', ['ngMaterial', 'ui.router', 'ngSanitize', 'ngAnimate', 'vAccordion', 'angular-carousel'])
+        .module('app', ['ngMaterial', 'ui.router', 'ngSanitize', 'ngAnimate', 'vAccordion', 'angular-carousel', 'md.data.table'])
         .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider'];
@@ -23,7 +23,6 @@
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
 
-        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     }

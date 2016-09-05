@@ -2,7 +2,10 @@
     <div ng-switch-when="staff" >
         <ng-include src="'/static/views/staff.html'"></ng-include>
     </div>
-    <div ng-switch-default>
-        <ng-include src="'/static/views/baselist.html'"></ng-include>
+    <div ng-switch-when="detail">
+        <ng-include src="'/static/views/detail.html'"></ng-include>
+    </div>
+    <div ng-switch-when="document">
+        <ng-include src="'/static/views/documents.html'"></ng-include>
     </div>
 </div>

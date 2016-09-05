@@ -1,4 +1,4 @@
-<section  md-whiteframe="10" ng-controller="staff as st" ng-cloak style="position: relative">
+<section  md-whiteframe="10" ng-controller="staff as st" ng-cloak>
     <md-toolbar layout="row"  ng-model="category" ng-init="category='администрация'">
             <md-button flex ng-repeat="cat in st.category" ng-click="st.cur_cat=cat" ng-class="{'active':st.cur_cat==cat}">{{cat}}</md-button>
     </md-toolbar>

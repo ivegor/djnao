@@ -28,6 +28,9 @@
                     }
                     return 1
                 }
+            };
+            vm.hide = function(){
+                return angular.element( document.querySelector( '#animated')).hasClass('ng-enter') ;
             }
         }
 })();

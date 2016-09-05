@@ -1,0 +1,9 @@
+<section  md-whiteframe="10" ng-controller="DetailController as detail">
+    <md-toolbar>
+        <h1 class="center toolbar__title">{{ switch.content.heading }}</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+        <img ng-if="switch.content.image" class="img-rounded center-block" src="{{ switch.content.image }}" width="100%">
+        <div ng-bind-html="switch.content.text"></div>
+    </md-content>
+</section>

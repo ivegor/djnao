@@ -15,6 +15,7 @@ nt = namedtuple('Obj', 'content template many')
 class TupleGenericForeignKey(GenericForeignKey):
     def __get__(self, instance, instance_type=None):
         g = super().__get__(instance, instance_type)
+        print(g, 'there')
         if g:
             return nt(g, g.template(), False)
         elif instance.content_type:
@@ -23,27 +24,6 @@ class TupleGenericForeignKey(GenericForeignKey):
             return nt(model.objects.all(), template(), True)
         else:
             return
-
-
-class Menu(MPTTModel):
-    name = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField(blank=True, unique=True, null=True)
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
-    order = models.PositiveSmallIntegerField()
-
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, blank=True, null=True, verbose_name='тип')
-    object_id = models.PositiveIntegerField(blank=True, null=True)
-    content_object = TupleGenericForeignKey('content_type', 'object_id')
-
-    class Meta:
-        ordering = ('order',)
-        unique_together = ('order', 'parent')
-
-    def __str__(self):
-        return self.name
-
-    def do_slug(self):
-        self.slug = slugify(unidecode(self.name))
 
 
 class AbsMenu(BaseModel):
@@ -77,4 +57,12 @@ class SubMenu(AbsMenu):
     content_object = TupleGenericForeignKey('content_type', 'object_id')
 
     class Meta:
+        ordering = ('order',)
         unique_together = ('main_menu', 'order')
+
+    def __str__(self):
+        return self.name
+
+    def do_slug(self):
+        self.slug = slugify(unidecode(self.name))
+

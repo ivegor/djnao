@@ -14,4 +14,3 @@ class Detail(BaseModel):
     def __str__(self):
         return self.heading or self.text[:30]
 
-    DIRECTIVE = 'defaultView'

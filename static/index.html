@@ -17,6 +17,7 @@
         <link href="/static/css/v-accordion.min.css" rel="stylesheet" />
         <link href="/static/css/angular-carousel.min.css" rel="stylesheet" />
         <link href="/static/css/slider.css" rel="stylesheet" />
+        <link href="/static/css/md-data-table.min.css" rel="stylesheet">
 
         <script src="/static/js/libs/angular.js"></script>
         <script src="/static/js/libs/angular-route.js"></script>
@@ -29,6 +30,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.js"></script>
         <script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
         <script src="/static/js/libs/angular-carousel.min.js"></script>
+        <script src="/static/js/libs/md-data-table.min.js"></script>
 
         <script src="/static/app/app.js"></script>
         <script src="/static/app/common/common.controller.js"></script>
@@ -38,7 +40,7 @@
         <script src="/static/app/common/common.tel.filter.js"></script>
         <script src="/static/app/common/list/common.list.controller.js"></script>
         <!--<script src="/static/app/common/list/common.list.directive.js"></script>-->
-        <!--<script src="/static/app/common/detail/common.detail.controller.js"></script>-->
+        <script src="/static/app/common/detail/common.detail.controller.js"></script>
         <script src="/static/app/home/home.controller.js"></script>
         <script src="/static/app/common/switch/common.switch.controller.js"></script>
         <script src="/static/app/staff/staff.controller.js"></script>
@@ -61,10 +63,12 @@
                 md-is-locked-open="$mdMedia('gt-sm')">
 
                 <header>
-                  <a ng-href="/" class="side_nav__header" ng-click="base.focusSection()">
-                      <img src="{{ base.base.logo }}" style="width: 100%" alt="" />
-                      <h2 class="md-subhead side_nav__header__title">{{ base.base.heading }}</h2>
-                  </a>
+                    <a ng-href="/" class="side_nav__header" ng-click="base.focusSection()">
+                        <img src="{{ base.base.logo }}" style="width: 100%" alt="" />
+                    </a>
+                    <div class="center">
+                        <a href="tel:{{ base.base.phone }}" class="md-subhead side_nav__phone">{{ base.base.phone|tel }}</a>
+                    </div>
                 </header>
                 <md-content flex role="navigation">
 
@@ -113,19 +117,17 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </md-button>
-                        <h1 class="toolbar__title">ГБПОУ НАО "Ненецкое профессиональное училище"</h1>
-
+                        <h2 class="toolbar__title"><span hide-gt-xs>{{base.base.small_heading}}</span><span hide-xs>{{base.base.heading}}</span></h2>
                 </md-toolbar>
                 <md-content md-scroll-y layout="column" flex class="flex">
-                        <div ui-view layout-padding flex="noshrink" layout="column" style="max-width: 864px" class="animate"></div>
+                        <div ui-view layout-padding flex="noshrink" layout="column" style="max-width: 864px" class="animate" id="animated"></div>
 
-                    <div class="footer_container">
-                        <footer class="">
-                            <div class="">
-                                <span class="">Официальный ресурс Ненецкого профессионального училища<br>2016</span>
+                        <footer layout="row" layout-align="center end" ng-class="{'hide': base.hide()}">
+                            <div>
+                                <span class="">Официальный ресурс Ненецкого профессионального училища 2016</span>
                             </div>
                         </footer>
-                    </div>
+
                 </md-content>
             </div>
 

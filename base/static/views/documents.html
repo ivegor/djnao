@@ -1,0 +1,22 @@
+<section  md-whiteframe="10" ng-cloak>
+    <md-toolbar layout="row">
+        <md-input-container style="color:white!important;">
+            <label>Название файла</label>
+        <input ng-model="file_name">
+      </md-input-container>
+    </md-toolbar>
+    <md-content >
+        <md-table-container>
+            <table md-table md-progress="promise">
+                <tbody md-body>
+                    <tr md-row md-auto-select ng-repeat="doc in switch.content|filter:{title: file_name}">
+                        <td md-cell><a href="{{doc.file}}" target="_blank">{{doc.title}}</a></td>
+                        <td md-cell>{{doc.mime_type}}</td>
+                        <td md-cell>{{doc.size}}</td>
+                        <td md-cell>{{doc.date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+    </md-content>
+</section>

@@ -60,13 +60,8 @@
   background: #267ED5;
 }
 
-.side_nav__header__title {
-  display: block;
+.side_nav__phone {
   line-height: 32px;
-  margin: 0;
-  padding: 8px 16px 0;
-  text-align: left;
-  width: 100%;
   color: rgba(255, 255, 255, 0.54);
 
 }

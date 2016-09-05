@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from base import rest
 from base.models import Base
 from djanao.rest import SERIALIZERS
-from menu.models import Menu
+from menu.models import SubMenu
 
 
 def base(request):
@@ -15,7 +15,7 @@ def base(request):
 
 def app(request, path):
     data = {}
-    current_menu = get_object_or_404(Menu, slug=path)
+    current_menu = get_object_or_404(SubMenu, slug=path)
     model = current_menu.content_object
     if model:
         data['content'] = SERIALIZERS[model.template](model.content, many=model.many).data
