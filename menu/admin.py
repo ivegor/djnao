@@ -11,7 +11,7 @@ from menu.models import SubMenu, MainMenu, GroupMenu
 
 class SubMenuForm(ModelForm):
     order = forms.IntegerField(widget=LeftRight())
-    content_type = forms.ModelChoiceField(queryset=ContentType.objects.filter(app_label__in=('detail', 'staff', 'blocks', 'documents')), required=False)
+    content_type = forms.ModelChoiceField(queryset=ContentType.objects.filter(app_label__in=('detail', 'staff', 'blocks', 'documents', 'gallery')), required=False)
     object_id = forms.IntegerField(widget=ChoiceGenericForeignKey(), required=False)
 
     class Meta:

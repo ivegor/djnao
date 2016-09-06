@@ -54,7 +54,8 @@ INSTALLED_APPS += [
     'menu',
     'detail',
     'staff',
-    'documents'
+    'documents',
+    'gallery'
 ]
 
 MIDDLEWARE_CLASSES = [

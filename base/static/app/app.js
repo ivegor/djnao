@@ -19,7 +19,17 @@
                 templateUrl : '/static/views/switch.html',
                 controller  : 'Switch',
                 controllerAs : 'switch'
-            });
+            })
+                .state('category.list',{
+                    url: ''
+                }
+
+                )
+                .state('category.element', {
+                    url: '/:id',
+                    templateUrl : '/static/views/baselist.html'
+
+                });
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
 

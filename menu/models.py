@@ -15,7 +15,6 @@ nt = namedtuple('Obj', 'content template many')
 class TupleGenericForeignKey(GenericForeignKey):
     def __get__(self, instance, instance_type=None):
         g = super().__get__(instance, instance_type)
-        print(g, 'there')
         if g:
             return nt(g, g.template(), False)
         elif instance.content_type:
