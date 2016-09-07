@@ -1,5 +1,5 @@
 <div>
-    <div ng-carousel ng-carousel-name="carousel" ng-carousel-watch="home.slider" ng-carousel-timer="2500">
+    <div ng-carousel ng-carousel-name="carousel" ng-carousel-watch="home.slider" ng-carousel-timer="3500">
         <slidecontainer>
             <slide ng-repeat="s in home.slider">
                 <img src="{{s.image}}" draggable="false" style="width: 100%">
@@ -7,15 +7,15 @@
                     <h3 hide-xs class="hidden-xs">{{ s.h3 }}</h3>
                     <p class="hidden-xs">{{ s.p }}</p>
 
-                        <md-button ng-show="s.link" href="{{ s.link }}" role="button">Смотреть</md-button>
+                        <md-button aria-label="Link" ng-show="s.link" href="{{ s.link }}" role="button">Смотреть</md-button>
 
                 </div>
             </slide>
         </slidecontainer>
-        <md-button hide-xs class="carousel__button carousel__button__left"
+        <md-button aria-label="Prev slide" hide-xs class="carousel__button carousel__button__left"
                    ng-click="home.carousel.get('carousel').previous()">
         </md-button>
-        <md-button hide-xs class="carousel__button carousel__button__right"
+        <md-button aria-label="Next slide" hide-xs class="carousel__button carousel__button__right"
                    ng-click="home.carousel.get('carousel').next()">
         </md-button>
     </div>

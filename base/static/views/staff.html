@@ -1,6 +1,6 @@
 <section  md-whiteframe="10" ng-controller="staff as st" ng-cloak>
     <md-toolbar layout="row"  ng-model="category" ng-init="category='администрация'">
-            <md-button flex ng-repeat="cat in st.category" ng-click="st.cur_cat=cat" ng-class="{'active':st.cur_cat==cat}">{{cat}}</md-button>
+        <md-button aria-label="Select category" flex ng-repeat="cat in st.category" ng-click="st.cur_cat=cat" ng-class="{'active':st.cur_cat==cat}">{{cat}}</md-button>
     </md-toolbar>
     <md-content layout="row" layout-wrap layout-align="space-around start">
         <md-card flex="45" flex-xs="100" layout="column" ng-repeat="staff in switch.content|filter:st.cur_cat | orderBy: '-additionalinformation.likes'">

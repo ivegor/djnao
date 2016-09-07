@@ -3,7 +3,7 @@ from collections import UserDict
 from rest_framework import serializers
 
 from documents.rest import DocumentSerializer
-from gallery.rest import GalleriesSerializer
+from gallery.rest import GalleriesSerializer, GallerySerializer
 from staff.rest import StaffSerializer
 
 
@@ -18,7 +18,8 @@ class DictWithDefault(UserDict):
 
 
 SERIALIZERS = DictWithDefault({
-    'staff': StaffSerializer,
-    'document': DocumentSerializer,
-    'photogallery': GalleriesSerializer
+    'staff_list': StaffSerializer,
+    'document_list': DocumentSerializer,
+    'photogallery_list': GalleriesSerializer,
+    'photogallery_detail': GallerySerializer
 })

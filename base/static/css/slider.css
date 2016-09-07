@@ -1,13 +1,9 @@
 .carousel__button{
-    background-color:rgba(16,108,200, 0.7);
     margin: 0;
     height: 100%;
     position: absolute;
     top:0;
     z-index: 2
-}
-.md-button.carousel__button.md-focused{
-    background-color:rgba(16,108,200, 0.7) !important;
 }
 .carousel__button__left{
     left: 0;

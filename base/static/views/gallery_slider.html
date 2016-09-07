@@ -1,0 +1,23 @@
+<md-dialog  ng-cloak style="max-width: 864px">
+    <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon aria-label="Close dialog">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" focusable="false"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </md-icon>
+    </md-button>
+    <div  ng-carousel ng-carousel-name="gallery_carousel" ng-carousel-watch="gallery" ng-init="car.get('gallery_carousel').toIndex(init)">
+        <slidecontainer>
+            <slide on-finish-render="car.get('gallery_carousel').toIndex(init)" ng-repeat="s in gallery">
+                <img src="{{s.photo}}" draggable="false" height="100%" width="100%">
+                <div ng-if="s.title" class="slider__container">
+                    <h3 hide-xs class="hidden-xs">{{ s.title }}</h3>
+                </div>
+            </slide>
+        </slidecontainer>
+        <md-button aria-label="Prev slide" hide-xs class="carousel__button carousel__button__left"
+                   ng-click="car.get('gallery_carousel').previous()">
+        </md-button>
+        <md-button aria-label="Next slide" hide-xs class="carousel__button carousel__button__right"
+                   ng-click="car.get('gallery_carousel').next()">
+        </md-button>
+    </div>
+</md-dialog>

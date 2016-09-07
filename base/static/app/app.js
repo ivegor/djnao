@@ -20,19 +20,17 @@
                 controller  : 'Switch',
                 controllerAs : 'switch'
             })
-                .state('category.list',{
-                    url: ''
-                }
+            .state('element', {
+                url: '/:category/:id',
+                templateUrl : '/static/views/switch.html',
+                controller  : 'SwitchElement',
+                controllerAs : 'switch'
 
-                )
-                .state('category.element', {
-                    url: '/:id',
-                    templateUrl : '/static/views/baselist.html'
-
-                });
+            });
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
 
+        $httpProvider.defaults.cache = true;
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     }

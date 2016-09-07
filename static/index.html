@@ -44,7 +44,11 @@
         <script src="/static/app/common/detail/common.detail.controller.js"></script>
         <script src="/static/app/home/home.controller.js"></script>
         <script src="/static/app/common/switch/common.switch.controller.js"></script>
+        <script src="/static/app/common/switch/common.switch.element.js"></script>
+        <script src="/static/app/gallery/gallery.detailController.js"></script>
+
         <script src="/static/app/staff/staff.controller.js"></script>
+        <script src="/static/app/common/list/common.list.directive.js"></script>
         <!--<script src="/static/app/staff/staff.directive.js"></script>-->
         <!--<script src="/static/app/common/select/common.select.directive.js"></script>-->
         <!--<script src="/static/app/common/detail/common.detail.directive.js"></script>-->
@@ -81,7 +85,7 @@
                                 <v-pane id="{{ mainMenu.name }}" ng-repeat="mainMenu in group.main_menus" >
 
                                     <v-pane-header>
-                                        <md-button>
+                                        <md-button aria-label="expand menu">
                                             <div layout="row">
                                                 {{mainMenu.name}}
                                                 <span class="flex"></span>
@@ -98,7 +102,7 @@
                                     </v-pane-header>
 
                                     <v-pane-content>
-                                        <md-button ng-repeat="subMenu in mainMenu.sub_menus" class="sub_menu__link" ng-href="{{subMenu.slug}}" ng-click="base.focusSection()" ng-class="{'active': base.isActive(subMenu.slug, $pane)}">
+                                        <md-button aria-label="menu" ng-repeat="subMenu in mainMenu.sub_menus" class="sub_menu__link" ng-href="{{subMenu.slug}}" ng-click="base.focusSection()" ng-class="{'active': base.isActive(subMenu.slug, $pane)}">
                                                 {{subMenu.name}}
                                         </md-button>
                                     </v-pane-content>
@@ -113,7 +117,7 @@
             </md-sidenav>
             <div layout="column" tabindex="-1" role="main" flex class="layout-column flex">
                 <md-toolbar layout="row" class="md-primary">
-                        <md-button id="nav-btn" ng-click="base.openMenu()" hide-gt-sm>
+                        <md-button aria-label="Open menu" id="nav-btn" ng-click="base.openMenu()" hide-gt-sm>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>

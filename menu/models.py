@@ -16,10 +16,10 @@ class TupleGenericForeignKey(GenericForeignKey):
     def __get__(self, instance, instance_type=None):
         g = super().__get__(instance, instance_type)
         if g:
-            return nt(g, g.template(), False)
+            return nt(g, g.template_detail(), False)
         elif instance.content_type:
             model = instance.content_type.model_class()
-            template = model.template
+            template = model.template_list
             return nt(model.objects.all(), template(), True)
         else:
             return

@@ -1,14 +1,17 @@
 <div ng-switch="switch.template">
-    <div ng-switch-when="staff" >
+    <div ng-switch-when="staff_list" >
         <ng-include src="'/static/views/staff.html'"></ng-include>
     </div>
-    <div ng-switch-when="detail">
+    <div ng-switch-when="detail_detail">
         <ng-include src="'/static/views/detail.html'"></ng-include>
     </div>
-    <div ng-switch-when="document">
+    <div ng-switch-when="document_list">
         <ng-include src="'/static/views/documents.html'"></ng-include>
     </div>
-    <div ng-switch-when="photogallery">
+    <div ng-switch-when="photogallery_list">
         <ng-include src="'/static/views/galleries.html'"></ng-include>
+    </div>
+    <div ng-switch-when="photogallery_detail">
+        <ng-include src="'/static/views/gallery_detail.html'"></ng-include>
     </div>
 </div>

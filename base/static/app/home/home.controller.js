@@ -3,18 +3,13 @@
     angular
         .module('app')
         .controller('HomeController', HomeController);
-    HomeController.$inject = ['$http', 'DataCache', 'Carousel'];
+    HomeController.$inject = ['$http', 'Carousel'];
 
-    function HomeController($http, DataCache, Carousel) {
+    function HomeController($http, Carousel) {
             var vm = this;
-            vm.slider = DataCache.get('slider');
-            if (!vm.slider) {
-                var request = $http.get('/api/slider');
-                request.success(function (response) {
-                    DataCache.put('slider', response);
-                    vm.slider = response;
-                });
-            }
+            $http.get('/api/slider').then(function (response) {
+                    vm.slider = response.data
+            });
             vm.carousel = Carousel;
         }
 })();

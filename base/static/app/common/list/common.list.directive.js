@@ -2,19 +2,15 @@
     'use strict';
     angular
         .module('app')
-        .directive('onFinishRender', function ($timeout) {
+        .directive('onFinishRender', function ($timeout, $parse) {
             return {
                 restrict: 'A',
-                link: function (scope) {
+                link: function (scope, el, attr) {
                     if (scope.$last === true) {
                         $timeout(function () {
-                            scope.$emit('ngRepeatFinished');
-                            var quqntity=$(".item__sub_menu__left").size();
-                            var widthScroll=0;
-                            for (var i=0;i<quqntity;i++){
-                                widthScroll+=$(".item__sub_menu__left:eq("+i+")").width();
+                            if(!!attr.onFinishRender){
+                                $parse(attr.onFinishRender)(scope);
                             }
-                            $(".sub_menu__left").css('max-width', widthScroll+1);
                         });
                     }
                 }
