@@ -68,7 +68,30 @@ a{
 }
 .gallery__list_photo{
     cursor:pointer;
+    -webkit-transition: 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
+    transition: 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
+}
+.gallery__list_photo:hover{
+    transform: scale(0.95);
+}
+.gallery_el{
+    -webkit-transition: 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
+    transition: 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
+}
+.gallery_el:hover{
+    transform: scale(0.95);
 }
 .margin_left{
     margin-left: 100px;
+}
+/*staff*/
+.staff_search{
+    margin-bottom: -15px;
+}
+.staff_search>*{
+    color:#106CC8!important;
+    border-bottom-color: #106CC8!important;
+}
+.staff_search>label{
+    opacity: 0.5;
 }

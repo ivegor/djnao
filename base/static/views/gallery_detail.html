@@ -7,7 +7,7 @@
     </md-toolbar>
     <md-content layout="row" layout-wrap layout-align="start start">
         <md-card class="gallery__list_photo" ng-click="gallery.show($event, switch.content.photo_set, index, gallery.carousel)" flex="20" flex-xs="100" layout="column" ng-repeat="(index, gal) in switch.content.photo_set">
-            <img ng-src="{{gal.thumbnail}}" class="md-card-image" alt="{{gal.title}}" width="100%">
+            <img flex ng-src="{{gal.thumbnail}}" class="md-card-image" alt="{{gal.title}}" width="100%">
             <md-card-title ng-if="gal.title">
                 <md-card-title-text>
                     <span class="md-subhead">{{ gal.title }}</span>
@@ -15,6 +15,5 @@
             </md-card-title>
         </md-card>
     </md-content>
-
 </section>
 
