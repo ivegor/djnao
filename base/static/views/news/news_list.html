@@ -1,0 +1,22 @@
+<section  md-whiteframe="10" ng-cloak>
+    <md-toolbar layout="row" layout-align="center">
+        <h1 class="toolbar__title">Новости НПУ</h1>
+    </md-toolbar>
+    <md-content layout="row" layout-wrap layout-align="start start">
+        <div flex="50" flex-xs="100" ng-repeat="news in switch.content | orderBy: '-date'">
+            <md-card class="gallery_el animated_el" layout="column">
+                <a href="{{switch.cur_section + news.id}}">
+                    <img ng-src="{{news.thumbnail}}" class="md-card-image" alt="{{news.title}}">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-title">{{ news.title }}</span>
+                            <span class="md-subhead">{{news.date| date:'yyyy-MM-dd HH:mm'}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content><span ng-bind-html="news.announce"></span>...</md-card-content>
+                </a>
+            </md-card>
+        </div>
+    </md-content>
+
+</section>

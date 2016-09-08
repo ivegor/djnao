@@ -6,21 +6,26 @@
         base.$inject = ['$http', '$location', '$mdSidenav'];
         function base($http, $location, $mdSidenav){
             var vm = this;
+            vm.openMenu = openMenu;
+            vm.focusSection = focusSection;
+            vm.isActive = isActive;
+            vm.hide = hide;
+
             $http.get('/api/base').then(function(response){
                 vm.base = response.data;
             });
             $http.get('/api/menu').then(function(response){
                 vm.menu = response.data;
             });
-            vm.openMenu = function(){
-                $mdSidenav('left').toggle();
-            };
 
-            vm.focusSection = function(){
+            function openMenu(){
                 $mdSidenav('left').toggle();
-            };
+            }
+            function focusSection(){
+                $mdSidenav('left').toggle();
+            }
 
-            vm.isActive = function(slug, pane){
+            function isActive(slug, pane){
                 if (slug == $location.path().split('/')[1]){
                     if (!vm.init){
                         vm.init = 1;
@@ -28,9 +33,9 @@
                     }
                     return 1
                 }
-            };
-            vm.hide = function(){
-                return angular.element( document.querySelector( '#animated')).hasClass('ng-enter') ;
+            }
+            function hide(){
+                return angular.element(document.querySelector( '#animated')).hasClass('ng-enter') ;
             }
         }
 })();

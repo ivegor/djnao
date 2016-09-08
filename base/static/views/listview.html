@@ -1,8 +1,0 @@
-<section class="row">
-    <nav class="col-lg-2 col-md-3 col-sm-4 scroll_menu_container">
-        <ul class="sub_menu__left nav btn-group nav-pills nav-stacked" >
-            <li on-finish-render="ngRepeatFinished" class="item__sub_menu__left" ng-repeat="m in list.menu" ng-class="{active: list.isActiveUrl(m.slug)}"><a ui-sref="menu.detail({page:m.slug})" >{{ m.name }}</a></li>
-        </ul>
-    </nav>
-    <article class="col-md-9 col-lg-10 col-sm-8 article__animation animate_for_footer" ui-view></article>
-</section>

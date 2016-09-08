@@ -30,33 +30,36 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
 
-INSTALLED_APPS += [
+    # Django extensions
+
     'rest_framework',
     'imagekit',
-    'mptt',
     'ckeditor',
     'ckeditor_uploader',
-    'django_mptt_admin'
-]
-# custom
-INSTALLED_APPS += [
+
+    # My apps
+
     'base',
     'blocks',
     'menu',
+
+    # Can be menu
     'detail',
     'staff',
     'documents',
-    'gallery'
-]
+    'gallery',
+    'news'
+)
+UNDER_MENU = INSTALLED_APPS[-5:]
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

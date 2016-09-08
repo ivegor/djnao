@@ -3,8 +3,8 @@
     angular
         .module('app')
         .controller('DetailController', DetailController);
-    DetailController.$inject = ['$stateParams', 'Request'];
-    function DetailController($stateParams, Request) {
+    DetailController.$inject = ['$stateParams'];
+    function DetailController($stateParams) {
         var vm = this;
     }
 })();

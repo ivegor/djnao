@@ -1,3 +1,5 @@
+from time import sleep
+
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
@@ -14,14 +16,14 @@ def base(request):
 
 
 def app(request, slug, id=None):
+    sleep(1)
     data = {}
     current_menu = get_object_or_404(SubMenu, slug=slug)
     if id:
         current_menu.object_id = id
     model = current_menu.content_object
-    if model:
-        data['content'] = SERIALIZERS[model.template](model.content, many=model.many).data
-        data['template'] = model.template
+    data['content'] = SERIALIZERS[model.template](model.content, many=model.many).data
+    data['template'] = model.template
     print(data)
     return JsonResponse(data, safe=False)
 

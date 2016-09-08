@@ -9,11 +9,13 @@
         var vm = this;
         vm.carousel = Carousel;
         vm.size = $mdMedia;
-        vm.show = function(ev, gals, index, car) {
+        vm.show = show;
+
+        function show(ev, gals, index, car) {
             var useFullScreen = $mdMedia('xs');
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: '/static/views/gallery_slider.html',
+                templateUrl: '/static/views/gallery/gallery_slider.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true,
@@ -34,9 +36,8 @@
                 $scope.gallery = gals;
                 $scope.init = init;
                 $scope.car = car;
-                $scope.hi = function(){console.log('hi')};
             }
-        };
+        }
 
     }
 })();

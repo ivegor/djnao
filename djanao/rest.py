@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 from documents.rest import DocumentSerializer
 from gallery.rest import GalleriesSerializer, GallerySerializer
+from news.rest import NewsListSerializer
 from staff.rest import StaffSerializer
 
 
@@ -21,5 +22,6 @@ SERIALIZERS = DictWithDefault({
     'staff_list': StaffSerializer,
     'document_list': DocumentSerializer,
     'photogallery_list': GalleriesSerializer,
-    'photogallery_detail': GallerySerializer
+    'photogallery_detail': GallerySerializer,
+    'news_list': NewsListSerializer
 })

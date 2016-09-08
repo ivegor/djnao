@@ -6,12 +6,13 @@ from django.forms import ModelForm
 
 from admin.views import ajax_admin_update
 from admin.widgets import ChoiceGenericForeignKey, LeftRight
+from djanao.settings import UNDER_MENU
 from menu.models import SubMenu, MainMenu, GroupMenu
 
 
 class SubMenuForm(ModelForm):
     order = forms.IntegerField(widget=LeftRight())
-    content_type = forms.ModelChoiceField(queryset=ContentType.objects.filter(app_label__in=('detail', 'staff', 'blocks', 'documents', 'gallery')), required=False)
+    content_type = forms.ModelChoiceField(queryset=ContentType.objects.filter(app_label__in=UNDER_MENU), required=False)
     object_id = forms.IntegerField(widget=ChoiceGenericForeignKey(), required=False)
 
     class Meta:

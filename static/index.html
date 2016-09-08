@@ -9,18 +9,22 @@
         <link rel="icon" href="/static/images/favicon.ico" type="image/png">
 
         <base href="/">
-        <title>Bootstrap 101 Template</title>
+        <title>ГБПОУ НАО "Ненецкое профессиональное училище"</title>
 
+        <link href="/static/css/libs/angular-material.min.css" rel="stylesheet">
+        <link href="/static/css/libs/v-accordion.min.css" rel="stylesheet">
+        <link href="/static/css/libs/angular-carousel.min.css" rel="stylesheet">
+        <link href="/static/css/libs/md-data-table.min.css" rel="stylesheet">
 
+        <link href="/static/css/normalize.css" rel="stylesheet">
+        <link href="/static/css/base.css" rel="stylesheet">
+        <link href="/static/css/animations.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.css">
-        <link href="/static/css/v-accordion.min.css" rel="stylesheet" />
-        <link href="/static/css/angular-carousel.min.css" rel="stylesheet" />
-        <link href="/static/css/slider.css" rel="stylesheet" />
-        <link href="/static/css/md-data-table.min.css" rel="stylesheet">
-        <link href="/static/css/doc.css" rel="stylesheet">
+        <link href="/static/css/apps/menu.css" rel="stylesheet">
+        <link href="/static/css/apps/doc.css" rel="stylesheet">
+        <link href="/static/css/apps/slider.css" rel="stylesheet">
 
-        <script src="/static/js/libs/angular.js"></script>
+        <script src="/static/js/libs/angular.min.js"></script>
         <script src="/static/js/libs/angular-route.js"></script>
         <script src="/static/js/libs/angular-sanitize.js"></script>
         <script src="/static/js/libs/angular-animate.js"></script>
@@ -30,18 +34,12 @@
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.js"></script>
         <script src="/static/js/libs/hammer.min.js"></script>
-
         <script src="/static/js/libs/angular-carousel.min.js"></script>
         <script src="/static/js/libs/md-data-table.min.js"></script>
 
         <script src="/static/app/app.js"></script>
         <script src="/static/app/common/common.controller.js"></script>
-        <script src="/static/app/common/cache/common.factory.js"></script>
-        <script src="/static/app/common/cache/common.cache.request.factory.js"></script>
-        <!--<script src="/static/app/common/common.footer.animation.js"></script>-->
         <script src="/static/app/common/common.tel.filter.js"></script>
-        <script src="/static/app/common/list/common.list.controller.js"></script>
-        <!--<script src="/static/app/common/list/common.list.directive.js"></script>-->
         <script src="/static/app/common/detail/common.detail.controller.js"></script>
         <script src="/static/app/home/home.controller.js"></script>
         <script src="/static/app/common/switch/common.switch.controller.js"></script>
@@ -50,32 +48,23 @@
 
         <script src="/static/app/staff/staff.controller.js"></script>
         <script src="/static/app/common/list/common.list.directive.js"></script>
-        <!--<script src="/static/app/staff/staff.directive.js"></script>-->
-        <!--<script src="/static/app/common/select/common.select.directive.js"></script>-->
-        <!--<script src="/static/app/common/detail/common.detail.directive.js"></script>-->
-
-
-        <link href="/static/css/normalize.css" rel="stylesheet" type="text/css">
-
-        <link href="/static/css/base.css" rel="stylesheet" type="text/css">
-        <link href="/static/css/animations.css" rel="stylesheet" type="text/css">
-        <link href="/static/css/menu.css" rel="stylesheet" type="text/css">
 
     </head>
-    <body ng-controller="Base as base" class="layout-row" layout="row">
+    <body ng-controller="Base as base" layout="row">
 
-            <md-sidenav class="side_nav md-whiteframe-z2 md-sidenav-left"
-                md-component-id="left" hide-print
-                md-is-locked-open="$mdMedia('gt-sm')">
+        <md-sidenav
+            class="default_background_color"
+            md-component-id="left"
+            hide-print
+            md-is-locked-open="$mdMedia('gt-sm')">
 
-                <header>
-                    <a ng-href="/" class="side_nav__header" ng-click="base.focusSection()">
-                        <img src="{{ base.base.logo }}" style="width: 100%" alt="" />
-                    </a>
-                    <div class="center">
-                        <a href="tel:{{ base.base.phone }}" class="md-subhead side_nav__phone">{{ base.base.phone|tel }}</a>
-                    </div>
-                </header>
+            <header layout="column" layout-align="center center">
+                <a flex ng-href="/" ng-click="base.focusSection()">
+                    <img src="{{ base.base.logo }}" width="100%">
+                </a>
+                <a flex href="tel:{{ base.base.phone }}" class="md-subhead default_text_color opacity">{{ base.base.phone|tel }}</a>
+            </header>
+
                 <md-content flex role="navigation">
 
                     <v-accordion id="my-accordion" control="accordion">
@@ -137,7 +126,6 @@
                 </md-content>
             </div>
 
-        <script src="/static/js/animations.js"></script>
     </body>
 </html>
 {% endverbatim %}

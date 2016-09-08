@@ -10,7 +10,7 @@
             <table md-table md-progress="promise">
                 <tbody md-body>
                     <tr md-row md-auto-select ng-repeat="doc in switch.content|filter:{title: file_name}">
-                        <td md-cell><a class="doc_link" href="{{doc.file}}" target="_blank">{{doc.title|limit_from_size}}</a></td>
+                        <td md-cell><a class="doc_link animated_el" href="{{doc.file}}" target="_blank">{{doc.title|limit_from_size}}</a></td>
                         <td md-cell>{{doc.mime_type}}</td>
                         <td md-cell>{{doc.size}}</td>
                         <td md-cell>{{doc.date}}</td>

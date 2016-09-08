@@ -1,0 +1,21 @@
+<section  md-whiteframe="10" ng-cloak ng-controller="GalleryDetailController as gallery">
+    <md-toolbar layout-gt-xs="row" layout-xs="column" layout-align="center">
+        <a flex="10" flex-xs="100" href="{{switch.cur_section}}" aria-label="Back to galleries" class=" md-button">
+            <md-icon md-svg-src="/static/images/back.svg" aria-hidden="true"></md-icon>
+        </a>
+        <h1 flex class="toolbar__title " ng-class="{'md-headline':gallery.size('xs')}">{{switch.content.title}}</h1>
+    </md-toolbar>
+    <md-content layout="row" layout-wrap layout-align="start start">
+        <div flex="25" flex-xs="100" ng-repeat="(index, gal) in switch.content.photo_set">
+            <md-card class="gallery__list_photo animated_el" ng-click="gallery.show($event, switch.content.photo_set, index, gallery.carousel)"layout="column" >
+                <img flex ng-src="{{gal.thumbnail}}" class="md-card-image" alt="{{gal.title}}" width="100%">
+                <md-card-title ng-if="gal.title">
+                    <md-card-title-text>
+                        <span class="md-subhead">{{ gal.title }}</span>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+    </md-content>
+</section>
+

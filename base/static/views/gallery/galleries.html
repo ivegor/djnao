@@ -1,0 +1,22 @@
+<section  md-whiteframe="10" ng-cloak>
+    <md-toolbar layout="row" layout-align="center">
+        <h1 class="toolbar__title">Фотогалерея</h1>
+    </md-toolbar>
+    <md-content layout="row" layout-wrap layout-align="start start">
+        <div flex="33" flex-xs="100" ng-repeat="gal in switch.content | orderBy: '-date'">
+            <md-card class="gallery_el animated_el" layout="column">
+                <a href="{{switch.cur_section + gal.id}}">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-title">{{ gal.title }}</span>
+                        <span class="md-subhead">{{gal.date}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <img ng-src="{{gal.thumbnail}}" class="md-card-image" alt="{{gal.title}}">
+                    </a>
+            </md-card>
+        </div>
+    </md-content>
+
+</section>
+
