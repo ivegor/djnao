@@ -5,7 +5,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.text import slugify
 from unidecode import unidecode
-from mptt.models import MPTTModel, TreeForeignKey
 
 from djanao.models import BaseModel
 
