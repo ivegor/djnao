@@ -16,7 +16,7 @@ def base(request):
 
 
 def app(request, slug, id=None):
-    sleep(1)
+    sleep(0.3)
     data = {}
     current_menu = get_object_or_404(SubMenu, slug=slug)
     if id:

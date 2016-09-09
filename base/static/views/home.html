@@ -3,12 +3,10 @@
         <slidecontainer>
             <slide ng-repeat="s in home.slider">
                 <img src="{{s.image}}" draggable="false" style="width: 100%">
-                <div ng-show="s.h3||s.p||s.link" class="slider__container md-whiteframe-24dp" style="color:{{ slider.color }}">
-                    <h3 hide-xs class="hidden-xs">{{ s.h3 }}</h3>
-                    <p class="hidden-xs">{{ s.p }}</p>
-
-                        <md-button aria-label="Link" ng-show="s.link" href="{{ s.link }}" role="button">Смотреть</md-button>
-
+                <div ng-if="s.h3||s.p||s.link" class="slider__container default_background_color">
+                    <h3 hide-xs>{{ s.h3 }}</h3>
+                    <p hide-xs>{{ s.p }}</p>
+                    <md-button aria-label="Link" ng-show="s.link" href="{{ s.link }}" role="button">Смотреть</md-button>
                 </div>
             </slide>
         </slidecontainer>

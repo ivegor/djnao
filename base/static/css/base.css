@@ -6,7 +6,7 @@
     opacity: 0.54;
 }
 .default_text_color{
-    color:white;
+    color:white!important;
 }
 .animated_el{
     -webkit-transition: 300ms cubic-bezier(0.420, 0.000, 0.580, 1.000) all;
@@ -66,11 +66,11 @@ a{
     cursor:pointer;
 }
 .gallery__list_photo:hover{
-    transform: scale(0.95);
+    transform: scale(0.98);
 }
 
 .gallery_el:hover{
-    transform: scale(0.95);
+    transform: scale(0.98);
 }
 .margin_left{
     margin-left: 100px;
@@ -92,4 +92,9 @@ a{
     border-radius: 2px;
     padding: 1px;
     margin-top: 3px;
+}
+
+/*news*/
+.news_el__animate:hover{
+    transform: scale(0.99);
 }

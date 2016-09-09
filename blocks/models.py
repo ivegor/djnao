@@ -9,4 +9,4 @@ class Slider(BaseModel):
     h3 = models.CharField(max_length=255, blank=True)
     p = models.CharField(max_length=255, blank=True)
     link = models.CharField(max_length=255, blank=True)
-    image = ProcessedImageField(upload_to='slider', processors=[ResizeToFill(1000, 400)])
+    image = ProcessedImageField(upload_to='slider', processors=[ResizeToFill(900, 600)])

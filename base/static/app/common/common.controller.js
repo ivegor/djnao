@@ -35,7 +35,7 @@
                 }
             }
             function hide(){
-                return angular.element(document.querySelector( '#animated')).hasClass('ng-enter') ;
+                return angular.element(document.querySelector( '#animated')).hasClass('ng-enter-active') ;
             }
         }
 })();

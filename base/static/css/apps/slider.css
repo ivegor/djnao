@@ -17,11 +17,12 @@
     left: 20%;
     width:60%;
     text-align: center;
-
+    opacity: 0.85
 }
 .slider__container>*{
     color: white;
-    text-shadow: 2px 2px 2px rgb(16,108,200);
+    text-shadow: 2px 2px 2px rgb(0,0,0);
+    /*(16,108,200);*/
 }
 slidecontainer{
     position: relative !important;
