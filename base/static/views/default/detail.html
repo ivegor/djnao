@@ -5,5 +5,8 @@
     <md-content layout="row" layout-padding>
         <img ng-if="switch.content.image" class="img-rounded center-block" src="{{ switch.content.image }}" width="100%">
         <div ng-bind-html="switch.content.text"></div>
+        <div>
+            <a ng-href="{{doc.url}}" target="_blank" ng-repeat="doc in switch.content.documents">{{doc.title}}</a>
+        </div>
     </md-content>
 </section>

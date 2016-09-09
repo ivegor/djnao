@@ -1,4 +1,4 @@
-<section md-whiteframe="10" ng-cloak>
+<section md-whiteframe="10" ng-cloak ng-controller="NewsController as news">
     <md-toolbar layout-gt-xs="row" layout-xs="column" layout-align="center">
         <a flex="10" flex-xs="100" href="{{switch.cur_section}}" aria-label="Back to news list" class="md-button">
             <md-icon md-svg-src="/static/images/back.svg" aria-hidden="true"></md-icon>
@@ -6,10 +6,35 @@
         <h1 flex class="toolbar__title " ng-class="{'md-headline':gallery.size('xs')}">{{switch.content.title}}</h1>
     </md-toolbar>
     <md-content layout-padding layout="column">
-        <div flex class="md-subhead">{{switch.content.date|date:'yyyy-MM-dd HH:mm'}}</div>
+        <div layout="row">
+            <div flex class="md-subhead">{{switch.content.date|date:'yyyy-MM-dd HH:mm'}}</div>
+            <div flex></div>
+            <div flex-xs="20" flex="10" layout="row" layout-align="center center">
+                <div>{{switch.content.additional.likes}}</div>
+                <md-button class="md-icon-button" aria-label="Favorite" ng-click="news.set_like(switch.content)" ng-class="{'liked': switch.content.like}">
+                    <md-icon md-font-set="material-icons"  aria-hidden="true">favorite</md-icon>
+                </md-button>
+            </div>
+            <div flex-xs="20" flex="10" layout="row" layout-align="space-around center">
+                <div>{{switch.content.additional.views}}</div>
+                <div>
+                    <md-icon md-font-set="material-icons" aria-hidden="true">remove_red_eye</md-icon>
+                </div>
+            </div>
+        </div>
         <div flex>
             <img ng-if="switch.content.image" class="img-rounded center-block"  src="{{ switch.content.image }}" style="max-width: 100%">
             <div ng-bind-html="switch.content.text"></div>
+            <md-card ng-if="switch.content.documents[0]">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span><b>Сопутсвующие документы:</b></span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout="column" layout-padding>
+                    <a class="md-caption" ng-href="{{doc.url}}" target="_blank" ng-repeat="doc in switch.content.documents">{{doc.title}}</a>
+                </md-card-content>
+            </md-card>
         </div>
     </md-content>
 </section>
