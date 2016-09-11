@@ -64,11 +64,10 @@
                 <a flex ng-href="/" ng-click="base.focusSection()">
                     <img src="{{ base.base.logo }}" width="100%">
                 </a>
-                <a flex href="tel:{{ base.base.phone }}" class="md-subhead default_text_color opacity">{{ base.base.phone|tel }}</a>
+                <a href="tel:{{ base.base.phone }}" class="md-subhead default_text_color opacity">{{ base.base.phone|tel }}</a>
             </header>
 
                 <md-content flex role="navigation">
-
                     <v-accordion id="my-accordion" control="accordion">
                         <ul class="menu">
                             <li ng-repeat="group in base.menu" >
@@ -107,7 +106,7 @@
 
                 </md-content>
             </md-sidenav>
-            <div layout="column" tabindex="-1" role="main" flex class="layout-column flex">
+            <div layout="column" tabindex="-1" role="main" flex>
                 <md-toolbar layout="row" class="md-primary">
                         <md-button aria-label="Open menu" id="nav-btn" ng-click="base.openMenu()" hide-gt-sm>
                             <span class="icon-bar"></span>
@@ -116,7 +115,7 @@
                         </md-button>
                         <h2 class="toolbar__title"><span hide-gt-xs>{{base.base.small_heading}}</span><span hide-xs>{{base.base.heading}}</span></h2>
                 </md-toolbar>
-                <md-content md-scroll-y layout="column" flex class="flex">
+                <md-content md-scroll-y layout="column" flex>
                         <div ui-view layout-padding flex="noshrink" layout="column" style="max-width: 864px" class="animate" id="animated"></div>
 
                         <footer layout="row" layout-align="center end" ng-class="{'hide': base.hide()}">
