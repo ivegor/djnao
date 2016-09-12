@@ -4,18 +4,28 @@
     </md-toolbar>
     <md-content layout="row" layout-wrap layout-align="start start">
         <div flex="50" flex-xs="100" ng-repeat="spec in switch.content">
-            <md-card layout="column">
+            <md-card layout="column" class="animated_el speciality_el">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-title">{{ spec.title }}</span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-content>
-                        <div class="md-caption"><b>Квалификации:</b> {{spec.qualification}}</div>
-                        <div class="md-caption"><b>Область профессиональной деятельности:</b> {{spec.area}}</div>
-                        <div class="md-caption"><b>Виды деятельности:</b> {{spec.activities}}</div>
-                        <div ng-bind-html="spec.text"></div>
-                        <div class="md-caption"><b>Код:</b> {{spec.code}}</div>
+                    <md-card-content layout="column" layout-padding>
+                        <div ><b>Квалификации:</b>
+                            <ul>
+                                <li ng-repeat="q in spec.qualifications">{{q}}</li>
+                            </ul>
+                        </div>
+                        <md-divider></md-divider>
+                        <div><b>Область профессиональной деятельности:</b> {{spec.area}}</div>
+                        <md-divider></md-divider>
+                        <div><b>Виды деятельности:</b>
+                            <ul>
+                                <li ng-repeat="a in spec.activities">{{a}}</li>
+                            </ul>
+                        </div>
+                        <md-divider></md-divider>
+                        <div ><b>Код:</b> {{spec.code}}</div>
                     </md-card-content>
 
             </md-card>

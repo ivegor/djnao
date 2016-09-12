@@ -98,3 +98,8 @@ a{
 .news_el__animate:hover{
     transform: scale(0.99);
 }
+
+/*speciality*/
+.speciality_el:hover{
+    background-color: rgba(38, 126, 213, 0.2); ;
+}
