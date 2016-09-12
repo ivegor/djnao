@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<section  md-whiteframe="10" ng-cloak>
+    <md-toolbar layout="row" layout-align="center">
+        <h1 class="toolbar__title">Специальности</h1>
+    </md-toolbar>
+    <md-content layout="row" layout-wrap layout-align="start start">
+        <div flex="50" flex-xs="100" ng-repeat="spec in switch.content">
+            <md-card layout="column">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-title">{{ spec.title }}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <div class="md-caption"><b>Квалификации:</b> {{spec.qualification}}</div>
+                        <div class="md-caption"><b>Область профессиональной деятельности:</b> {{spec.area}}</div>
+                        <div class="md-caption"><b>Виды деятельности:</b> {{spec.activities}}</div>
+                        <div ng-bind-html="spec.text"></div>
+                        <div class="md-caption"><b>Код:</b> {{spec.code}}</div>
+                    </md-card-content>
 
-</body>
-</html>
+            </md-card>
+        </div>
+    </md-content>
+
+</section>

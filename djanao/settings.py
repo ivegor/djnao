@@ -55,9 +55,10 @@ INSTALLED_APPS = (
     'staff',
     'documents',
     'gallery',
-    'news'
+    'news',
+    'specialty'
 )
-UNDER_MENU = INSTALLED_APPS[-5:]
+UNDER_MENU = INSTALLED_APPS[-6:]
 
 
 MIDDLEWARE_CLASSES = [
