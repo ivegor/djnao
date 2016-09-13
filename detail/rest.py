@@ -19,4 +19,4 @@ class DetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Detail
-        fields = ('heading', 'image', 'text')
+        fields = ('heading', 'image', 'text', 'documents')

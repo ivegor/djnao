@@ -10,7 +10,8 @@
             $http.get('api/app/' + $stateParams.category).then(
                 function(response){
                     vm.template = response.data['template'];
-                    vm.content = response.data['content']
+                    vm.content = response.data['content'];
+                    vm.additional = response.data['additional']
                 },
                 function(){
                         $location.path("/");

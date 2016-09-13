@@ -2,6 +2,7 @@ from collections import UserDict
 
 from rest_framework import serializers
 
+from detail.rest import DetailSerializer
 from documents.rest import DocumentSerializer
 from gallery.rest import GalleriesSerializer, GallerySerializer
 from news.rest import NewsListSerializer, NewsDetailSerializer
@@ -26,5 +27,6 @@ SERIALIZERS = DictWithDefault({
     'photogallery_detail': GallerySerializer,
     'news_list': NewsListSerializer,
     'news_detail': NewsDetailSerializer,
-    'speciality_list': SpecialityListSerializer
+    'speciality_list': SpecialityListSerializer,
+    'detail': DetailSerializer
 })

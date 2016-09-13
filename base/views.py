@@ -21,6 +21,7 @@ def app(request, slug, id=None):
     model = current_menu.content_object
     data['content'] = SERIALIZERS[model.template](model.content, many=model.many).data
     data['template'] = model.template
-    print(data)
+    if model.additional:
+        data['additional'] = model.additional
     return JsonResponse(data, safe=False)
 

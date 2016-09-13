@@ -11,7 +11,6 @@ from menu.models import SubMenu, MainMenu, GroupMenu
 
 
 class SubMenuForm(ModelForm):
-    order = forms.IntegerField(widget=LeftRight())
     content_type = forms.ModelChoiceField(queryset=ContentType.objects.filter(app_label__in=UNDER_MENU), required=False)
     object_id = forms.IntegerField(widget=ChoiceGenericForeignKey(), required=False)
 
@@ -21,6 +20,7 @@ class SubMenuForm(ModelForm):
 
 
 class SubMenuAdmin(admin.ModelAdmin):
+    list_display = ('main_menu', 'name')
     form = SubMenuForm
 
     def get_urls(self):

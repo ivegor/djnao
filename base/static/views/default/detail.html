@@ -2,11 +2,22 @@
     <md-toolbar>
         <h1 class="center toolbar__title">{{ switch.content.heading }}</h1>
     </md-toolbar>
-    <md-content layout="row" layout-padding>
-        <img ng-if="switch.content.image" class="img-rounded center-block" src="{{ switch.content.image }}" width="100%">
-        <div ng-bind-html="switch.content.text"></div>
+    <md-content layout="column" layout-padding>
         <div>
-            <a ng-href="{{doc.url}}" target="_blank" ng-repeat="doc in switch.content.documents">{{doc.title}}</a>
+            <img ng-if="switch.content.image" class="img-rounded center-block" src="{{ switch.content.image }}" width="100%">
         </div>
+        <div ng-bind-html="switch.content.text"></div>
+
+
+        <md-card ng-if="switch.content.documents[0]">
+            <md-card-title>
+                <md-card-title-text>
+                    <span><b>Сопутсвующие документы:</b></span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="column" layout-padding>
+                <a class="md-caption" ng-href="{{doc.url}}" target="_blank" ng-repeat="doc in switch.content.documents">{{doc.title}}</a>
+            </md-card-content>
+        </md-card>
     </md-content>
 </section>

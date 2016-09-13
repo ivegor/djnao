@@ -16,3 +16,6 @@ class Document(BaseModel):
         if not self.title:
             self.title = self.file.name
         super().save(force_insert, force_update, using, update_fields)
+
+    class Meta:
+        ordering = ('-date', )

@@ -11,6 +11,11 @@
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content layout="column" layout-padding>
+                        <div ng-if="spec.additional" layout="row" layout-align="center center">
+                            <div flex><b>Форма:</b> {{ switch.additional.forms[spec.additional.form_learning] }}</div>
+                            <div flex><b>Мест:</b> {{spec.additional.budgets}}</div>
+                            <div flex><b>Заявок:</b> {{spec.additional.requests}}</div>
+                        </div>
                         <div ><b>Квалификации:</b>
                             <ul>
                                 <li ng-repeat="q in spec.qualifications">{{q}}</li>
@@ -25,7 +30,7 @@
                             </ul>
                         </div>
                         <md-divider></md-divider>
-                        <div ><b>Код:</b> {{spec.code}}</div>
+                        <div><b>Код:</b> {{spec.code}}</div>
                     </md-card-content>
 
             </md-card>
