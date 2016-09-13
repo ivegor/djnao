@@ -3,7 +3,8 @@
     angular
         .module('app')
         .filter('tel',tel)
-        .filter('limit_from_size', limit_from_size);
+        .filter('limit_from_size', limit_from_size)
+        .filter('multiple_select', multiple_select);
     limit_from_size.$inject = ['$mdMedia'];
 
     function limit_from_size($mdMedia) {
@@ -28,6 +29,17 @@
                 default:
                     return tel
             }
+        }
+    }
+    function multiple_select() {
+        return function (cur, arr) {
+            var filtered = [];
+            angular.forEach(cur, function (item) {
+                if (arr&&arr.indexOf(item.form) != -1){
+                    filtered.push(item)
+                }
+            });
+            return filtered
         }
     }
 })();

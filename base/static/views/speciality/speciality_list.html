@@ -3,7 +3,18 @@
         <h1 class="toolbar__title">Специальности</h1>
     </md-toolbar>
     <md-content layout="row" layout-wrap layout-align="start start">
-        <div flex="50" flex-xs="100" ng-repeat="spec in switch.content">
+        <div flex="100" layout="column">
+            <md-checkbox
+                    ng-model="active.active"
+                    ng-true-value="true"
+                    ng-false-value="undefined"
+            >В этом году</md-checkbox>
+
+            <md-select ng-model="filter_form" multiple>
+                <md-option ng-value="'{{k}}'" ng-repeat="(k,v) in switch.additional.forms">{{v}}</md-option>
+            </md-select>
+        </div>
+        <div flex="50" flex-xs="100" ng-repeat="spec in switch.content|filter: active|multiple_select: filter_form ">
             <md-card layout="column" class="animated_el speciality_el">
                     <md-card-title>
                         <md-card-title-text>
@@ -11,10 +22,10 @@
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content layout="column" layout-padding>
-                        <div ng-if="spec.additional" layout="row" layout-align="center center">
-                            <div flex><b>Форма:</b> {{ switch.additional.forms[spec.additional.form_learning] }}</div>
-                            <div flex><b>Мест:</b> {{spec.additional.budgets}}</div>
-                            <div flex><b>Заявок:</b> {{spec.additional.requests}}</div>
+                        <div ng-if="spec.active" layout="row" layout-align="center center">
+                            <div flex="40"><b>Форма:</b> {{ switch.additional.forms[spec.form] }}</div>
+                            <div flex="60"><b>Мест / заявок:</b> {{spec.budgets}} / {{spec.requests}}</div>
+
                         </div>
                         <div ><b>Квалификации:</b>
                             <ul>
