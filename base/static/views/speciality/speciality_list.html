@@ -2,19 +2,40 @@
     <md-toolbar layout="row" layout-align="center">
         <h1 class="toolbar__title">Специальности</h1>
     </md-toolbar>
-    <md-content layout="row" layout-wrap layout-align="start start">
-        <div flex="100" layout="column">
-            <md-checkbox
-                    ng-model="active.active"
-                    ng-true-value="true"
-                    ng-false-value="undefined"
-            >В этом году</md-checkbox>
-
-            <md-select ng-model="filter_form" multiple>
-                <md-option ng-value="'{{k}}'" ng-repeat="(k,v) in switch.additional.forms">{{v}}</md-option>
-            </md-select>
+    <md-content layout="row" layout-wrap >
+        <div flex="100" layout="row" layout-align="center center" layout-wrap layout-padding>
+            <div flex="33" flex-xs="100">
+                <md-input-container>
+                    <md-checkbox
+                            class="speciality__filter__checkbox"
+                            ng-model="active.active"
+                            ng-true-value="true"
+                            ng-false-value="undefined"
+                            aria-label="В этом году"
+                    >В этом году
+                    </md-checkbox>
+                </md-input-container>
+            </div>
+            <div flex="33" flex-xs="100">
+                <md-input-container>
+                    <label>Форма обучения</label>
+                    <md-select ng-model="filter_form" multiple>
+                        <md-option ng-value="'{{k}}'" ng-repeat="(k,v) in switch.additional.forms">{{v}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex="33" flex-xs="100">
+                <md-input-container>
+                    <label>Профиль</label>
+                    <md-select ng-model="filter_profile" multiple>
+                        <md-option ng-value="'{{k}}'" ng-repeat="(k,v) in switch.additional.profiles">{{v}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
         </div>
-        <div flex="50" flex-xs="100" ng-repeat="spec in switch.content|filter: active|multiple_select: filter_form ">
+        <div flex="50" flex-xs="100" ng-repeat="spec in switch.content|filter: active|
+                                                                       multiple_select: filter_form: 'form'|
+                                                                       multiple_select: filter_profile: 'profile'">
             <md-card layout="column" class="animated_el speciality_el">
                     <md-card-title>
                         <md-card-title-text>
@@ -22,9 +43,10 @@
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content layout="column" layout-padding>
-                        <div ng-if="spec.active" layout="row" layout-align="center center">
+                        <div class="panel" ng-if="spec.active" layout="row" layout-align="center center" layout-wrap>
                             <div flex="40"><b>Форма:</b> {{ switch.additional.forms[spec.form] }}</div>
                             <div flex="60"><b>Мест / заявок:</b> {{spec.budgets}} / {{spec.requests}}</div>
+                            <div flex="100" layout="row" layout-align="center center"><a href="rules" class="md-button">Хочу подать документы</a></div>
 
                         </div>
                         <div ><b>Квалификации:</b>

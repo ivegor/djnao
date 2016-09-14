@@ -32,10 +32,16 @@
         }
     }
     function multiple_select() {
-        return function (cur, arr) {
+        return function (cur, arr, attr) {
+            if (!attr){
+                attr = '$'
+            }
+            if(!arr || !arr[0]){
+                return cur
+            }
             var filtered = [];
             angular.forEach(cur, function (item) {
-                if (arr&&arr.indexOf(item.form) != -1){
+                if (arr.indexOf(item[attr]) != -1){
                     filtered.push(item)
                 }
             });
