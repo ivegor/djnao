@@ -1,0 +1,132 @@
+{% verbatim %}
+<!doctype html>
+<html lang="ru" ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+        <link rel="icon" href="/static/images/favicon.ico" type="image/png">
+
+        <base href="/">
+        <title>ГБПОУ НАО "Ненецкое профессиональное училище"</title>
+
+        <link href="/static/css/libs/angular-material.min.css" rel="stylesheet">
+        <link href="/static/css/libs/v-accordion.min.css" rel="stylesheet">
+        <link href="/static/css/libs/angular-carousel.min.css" rel="stylesheet">
+        <link href="/static/css/libs/md-data-table.min.css" rel="stylesheet">
+
+        <link href="/static/css/normalize.css" rel="stylesheet">
+        <link href="/static/css/base.css" rel="stylesheet">
+        <link href="/static/css/animations.css" rel="stylesheet">
+
+        <link href="/static/css/apps/menu.css" rel="stylesheet">
+        <link href="/static/css/apps/doc.css" rel="stylesheet">
+        <link href="/static/css/apps/slider.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <script src="/static/js/libs/angular.min.js"></script>
+        <script src="/static/js/libs/angular-route.js"></script>
+        <script src="/static/js/libs/angular-sanitize.js"></script>
+        <script src="/static/js/libs/angular-animate.js"></script>
+        <script src="/static/js/libs/angular-ui-router.js"></script>
+        <script src="/static/js/libs/v-accordion.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.js"></script>
+        <script src="/static/js/libs/hammer.min.js"></script>
+        <script src="/static/js/libs/angular-carousel.min.js"></script>
+        <script src="/static/js/libs/md-data-table.min.js"></script>
+
+        <script src="/static/app/app.js"></script>
+        <script src="/static/app/common/common.controller.js"></script>
+        <script src="/static/app/common/common.tel.filter.js"></script>
+        <script src="/static/app/common/detail/common.detail.controller.js"></script>
+        <script src="/static/app/home/home.controller.js"></script>
+        <script src="/static/app/common/switch/common.switch.controller.js"></script>
+        <script src="/static/app/common/switch/common.switch.element.js"></script>
+        <script src="/static/app/gallery/gallery.detailController.js"></script>
+        <script src="/static/app/news/news.controller.js"></script>
+        <script src="/static/app/staff/staff.controller.js"></script>
+        <script src="/static/app/common/list/common.list.directive.js"></script>
+        <script src="/static/app/common/common.values.js"></script>
+
+    </head>
+    <body ng-controller="Base as base" layout="row">
+
+        <md-sidenav
+            class="default_background_color"
+            md-component-id="left"
+            hide-print
+            md-is-locked-open="$mdMedia('gt-sm')">
+
+            <header layout="column" layout-align="center center">
+                <a flex ng-href="/" ng-click="base.focusSection()">
+                    <img src="{{ base.base.logo }}" width="100%">
+                </a>
+                <a href="tel:{{ base.base.phone }}" class="md-subhead default_text_color opacity">{{ base.base.phone|tel }}</a>
+            </header>
+
+                <md-content flex role="navigation">
+                    <v-accordion id="my-accordion" control="accordion">
+                        <ul class="menu">
+                            <li ng-repeat="group in base.menu" >
+                                <h2 ng-if="group.name" class="menu-heading md-subhead">{{group.name}}</h2>
+
+                                <v-pane id="{{ mainMenu.name }}" ng-repeat="mainMenu in group.main_menus" >
+
+                                    <v-pane-header>
+                                        <md-button aria-label="expand menu">
+                                            <div layout="row">
+                                                {{mainMenu.name}}
+                                                <span class="flex"></span>
+                                                <span aria-hidden="true" class="menu__icon_arrow">
+                                                    <md-icon aria-hidden="true">
+                                                        <svg version="1.1" x="0px" y="0px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                                                            <path d="M24 16l-12 12 2.83 2.83 9.17-9.17 9.17 9.17 2.83-2.83z"></path>
+                                                            <path d="M0 0h48v48h-48z" fill="none"></path>
+                                                        </svg>
+                                                    </md-icon>
+                                                </span>
+                                            </div>
+                                        </md-button>
+                                    </v-pane-header>
+
+                                    <v-pane-content>
+                                        <md-button aria-label="menu" ng-repeat="subMenu in mainMenu.sub_menus" class="sub_menu__link" ng-href="{{subMenu.slug}}" ng-click="base.focusSection()" ng-class="{'active': base.isActive(subMenu.slug, $pane)}">
+                                                {{subMenu.name}}
+                                        </md-button>
+                                    </v-pane-content>
+
+                                </v-pane>
+
+                            </li>
+                        </ul>
+                    </v-accordion>
+
+                </md-content>
+            </md-sidenav>
+            <div layout="column" tabindex="-1" role="main" flex>
+                <md-toolbar layout="row" class="md-primary">
+                        <md-button aria-label="Open menu" id="nav-btn" ng-click="base.openMenu()" hide-gt-sm>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </md-button>
+                        <h2 class="toolbar__title"><span hide-gt-xs>{{base.base.small_heading}}</span><span hide-xs>{{base.base.heading}}</span></h2>
+                </md-toolbar>
+                <md-content md-scroll-y layout="column" flex>
+                        <div ui-view layout-padding flex="noshrink" layout="column" style="max-width: 864px" class="animate" id="animated"></div>
+
+                        <footer layout="row" layout-align="center end" ng-class="{'hide': base.hide()}">
+                            <div>
+                                <span class="">Официальный ресурс Ненецкого профессионального училища 2016</span>
+                            </div>
+                        </footer>
+
+                </md-content>
+            </div>
+
+    </body>
+</html>
+{% endverbatim %}
